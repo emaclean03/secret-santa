@@ -8,7 +8,7 @@ use Inertia\Inertia;
 
 class PublicListController extends Controller
 {
-    public function generateUrl(Request $request, SecretList $secretList)
+    public function index(Request $request, SecretList $secretList)
     {
         if (! $request->hasValidSignature()) {
             abort(401);

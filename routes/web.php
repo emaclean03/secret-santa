@@ -43,12 +43,13 @@ Route::middleware([
     Route::post('/secretList/{secretList}/delete', [SecretListController::class, 'destroy'])->name('List.destroy');
     Route::post('/secretList/{secretList}/update', [SecretListController::class, 'update'])->name('List.update');
     //Generates the signed URL
-    Route::get('/generateList/{secretList}', [SecretListController::class,'show'])->name('List.show');
+    Route::get('/generateList/{secretList}', [SecretListController::class,'show'])->name('List.generateUrl');
 });
 
 
 //public routes
 
-Route::get('/list/{secretList}', [PublicListController::class, 'generateUrl'])->name('public.generateUrl');
+//get's the signed URL
+Route::get('/list/{secretList}', [PublicListController::class, 'index'])->name('public.index');
 Route::post('/secretList/{secretList}/update', [PublicListController::class, 'update'])->name('public.list.update');
 

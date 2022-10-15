@@ -69,7 +69,7 @@ class SecretListController extends Controller
         return Inertia::render('AuthenticatedSecretList/SecretList', [
             'list'=> $secretList,
             'participants'=>$secretList->participant()->get(),
-            'signedUrl'=>URL::signedRoute('public.generateUrl', $secretList->id)
+            'signedUrl'=>URL::signedRoute('public.index', $secretList->id)
         ]);
     }
 
