@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateSecretListRequest;
 use App\Models\Participant;
 use App\Models\SecretList;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
@@ -36,12 +37,12 @@ class SecretListController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreSecretListRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreSecretListRequest $request)
     {
       $list = SecretList::create([
-           'list_name' => 'This is a test',
+           'list_name' => $request->listName,
            'name' => Auth::user()->name,
            'email' => Auth::user()->email,
            'user_id' => Auth::user()->id,
@@ -56,6 +57,10 @@ class SecretListController extends Controller
         }
 
         Auth::user()->SecretList()->attach($list);
+
+
+        return Redirect::back()->banner('Successfully created ' . $list->list_name);
+
     }
 
     /**

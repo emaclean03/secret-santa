@@ -1,9 +1,11 @@
 <template>
-  <div>
-    Your lists
-  </div>
   <div v-for="list in lists">
     <q-card class="my-card m-2">
+      <q-card-section>
+        <div class="text-h6">{{list.list_name}}</div>
+      </q-card-section>
+      <q-separator class="bg-black "/>
+
       <q-card-section>
         {{ list.list_name }}
       </q-card-section>
