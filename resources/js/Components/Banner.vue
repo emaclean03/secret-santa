@@ -2,13 +2,22 @@
 import { computed, ref, watch } from 'vue';
 import { usePage } from '@inertiajs/inertia-vue3';
 
-const show = ref(true);
+const show = ref(false);
 const style = computed(() => usePage().props.value.jetstream.flash?.bannerStyle || 'success');
 const message = computed(() => usePage().props.value.jetstream.flash?.banner || '');
 
 watch(message, async () => {
   show.value = true;
 });
+
+watch(show, () => {
+  setTimeout(() => {
+    show.value = false;
+    message.value = null;
+  }, 5000)
+
+})
+
 </script>
 
 <template>
