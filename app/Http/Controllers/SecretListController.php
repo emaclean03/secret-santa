@@ -36,24 +36,24 @@ class SecretListController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSecretListRequest  $request
+     * @param \App\Http\Requests\StoreSecretListRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreSecretListRequest $request)
     {
-      $list = SecretList::create([
-           'list_name' => $request->listName,
-           'name' => Auth::user()->name,
-           'email' => Auth::user()->email,
-           'user_id' => Auth::user()->id,
-       ]);
+        $list = SecretList::create([
+            'list_name' => $request->listName,
+            'name' => Auth::user()->name,
+            'email' => Auth::user()->email,
+            'user_id' => Auth::user()->id,
+        ]);
 
 
-        foreach ($request->participantNames as $name){
-           $participant = Participant::make([
-               'full_name'=>$name['name'],
-           ]);
-           $list->participant()->save($participant);
+        foreach ($request->participantNames as $name) {
+            $participant = Participant::make([
+                'full_name' => $name['name'],
+            ]);
+            $list->participant()->save($participant);
         }
 
         Auth::user()->SecretList()->attach($list);
@@ -66,22 +66,22 @@ class SecretListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SecretList  $secretList
+     * @param \App\Models\SecretList $secretList
      * @return \Inertia\Response
      */
     public function show(SecretList $secretList)
     {
         return Inertia::render('AuthenticatedSecretList/SecretList', [
-            'list'=> $secretList,
-            'participants'=>$secretList->participant()->get(),
-            'signedUrl'=>URL::signedRoute('public.index', $secretList->id)
+            'list' => $secretList,
+            'participants' => $secretList->participant()->get(),
+            'signedUrl' => URL::signedRoute('public.index', $secretList->id)
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SecretList  $secretList
+     * @param \App\Models\SecretList $secretList
      * @return \Illuminate\Http\Response
      */
     public function edit(SecretList $secretList)
@@ -92,8 +92,8 @@ class SecretListController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSecretListRequest  $request
-     * @param  \App\Models\SecretList  $secretList
+     * @param \App\Http\Requests\UpdateSecretListRequest $request
+     * @param \App\Models\SecretList $secretList
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateSecretListRequest $request, SecretList $secretList)
@@ -104,11 +104,22 @@ class SecretListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SecretList  $secretList
+     * @param \App\Models\SecretList $secretList
      * @return \Illuminate\Http\Response
      */
     public function destroy(SecretList $secretList)
     {
         $secretList->delete();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \App\Models\SecretList $secretList
+     * @return \Illuminate\Http\Response
+     */
+    public function drawParticipants(SecretList $secretList): \Illuminate\Http\Response
+    {
+        return '';
     }
 }

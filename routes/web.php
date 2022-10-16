@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\ParticipantsController;
 use App\Http\Controllers\PublicListController;
 use App\Http\Controllers\SecretListController;
 use App\Models\SecretList;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -42,6 +45,10 @@ Route::middleware([
     Route::post('/secretList/{secretList}/show', [SecretListController::class, 'store'])->name('List.show');
     Route::post('/secretList/{secretList}/delete', [SecretListController::class, 'destroy'])->name('List.destroy');
     Route::post('/secretList/{secretList}/update', [SecretListController::class, 'update'])->name('List.update');
+
+    //Participants
+    Route::get('/secretList/{secretList}/draw', [ParticipantsController::class, 'index'])->name('ParticipantList.draw');
+
     //Generates the signed URL
     Route::get('/generateList/{secretList}', [SecretListController::class,'show'])->name('List.generateUrl');
 });
@@ -53,3 +60,14 @@ Route::middleware([
 Route::get('/list/{secretList}', [PublicListController::class, 'index'])->name('public.index');
 Route::post('/secretList/{secretList}/update', [PublicListController::class, 'update'])->name('public.list.update');
 
+
+Route::get('/test', function(){
+
+    try {
+        dispatch(new App\Jobs\SendEmailJob('emaclean03@aol.com'));
+    dd('done');
+} catch (Exception $e) {
+        Log::info($e->getMessage());
+        dd($e->getMessage());
+    }
+});
