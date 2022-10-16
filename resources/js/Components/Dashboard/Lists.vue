@@ -2,7 +2,7 @@
   <div v-for="list in lists">
     <q-card class="my-card m-2">
       <q-card-section>
-        <div class="text-h6">{{list.list_name}}</div>
+        <div class="text-h6">{{ list.list_name }}</div>
       </q-card-section>
       <q-separator class="bg-black "/>
 
@@ -22,7 +22,7 @@ import {Inertia} from "@inertiajs/inertia";
 
 interface Props {
   lists: [{
-    id:number,
+    id: number,
     list_name: string,
     name: string,
     email: string,
@@ -31,11 +31,14 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const handleDeleteList = (listId:number) => {
+const handleDeleteList = (listId: number) => {
+  if (!confirm('Are you sure you wish to delete this list?')) {
+    return false;
+  }
   Inertia.post(`/secretList/${listId}/delete`);
 }
 
-const handleViewList = (listId:number) => {
+const handleViewList = (listId: number) => {
   Inertia.visit(`/generateList/${listId}`, {},);
 }
 </script>
