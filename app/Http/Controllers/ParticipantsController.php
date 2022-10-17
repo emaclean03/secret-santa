@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreParticipantsRequest;
 use App\Http\Requests\UpdateParticipantsRequest;
 use App\Models\Participant;
+use Inertia\Inertia;
 
 class ParticipantsController extends Controller
 {
@@ -15,7 +16,6 @@ class ParticipantsController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
