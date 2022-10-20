@@ -11,8 +11,12 @@ class Participant extends Model
     use HasFactory;
 
     protected $guarded = [];
-    public function secretList(): BelongsTo
-    {
-        return $this->belongsTo(SecretList::class);
+
+    public function parent(){
+        return $this->belongsTo(self::class , 'participant_id');
+    }
+
+    public function children(){
+        return $this->hasMany(self::class , 'id');
     }
 }

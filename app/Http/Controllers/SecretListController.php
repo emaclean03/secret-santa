@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSecretListRequest;
 use App\Http\Requests\UpdateSecretListRequest;
+use App\Jobs\SendEmailJob;
 use App\Models\Participant;
 use App\Models\SecretList;
+use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
@@ -73,7 +76,7 @@ class SecretListController extends Controller
     {
         return Inertia::render('AuthenticatedSecretList/SecretList', [
             'list' => $secretList,
-            'participants' => $secretList->participant()->get(),
+            'participants' => $secretList->participant()->with('parent')->get(),
             'signedUrl' => URL::signedRoute('public.index', $secretList->id)
         ]);
     }
@@ -116,10 +119,30 @@ class SecretListController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\SecretList $secretList
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function drawParticipants(SecretList $secretList): \Illuminate\Http\Response
+    public function drawParticipants(SecretList $secretList)
     {
-        return '';
+        $participants = $secretList->participant()->get();
+        $usedPeople = [];
+
+        foreach ($participants as $person) {
+            $randomPerson = $participants->random();
+            while ($randomPerson->id === $person->id || in_array($randomPerson->id, $usedPeople)) {
+                $randomPerson = $participants->random();
+            }
+            $person->participant_id = $randomPerson->id;
+            $person->save();
+            $usedPeople[] = $randomPerson->id;
+        }
+        $secretList->update(['has_been_drawn' => true]);
+
+        try {
+            $participants = $secretList->participant()->with('parent')->get();
+            dispatch(new SendEmailJob($participants, $secretList));
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+        }
+        return Redirect::back()->banner('Successfully drawn names. Emails have been dispatched.');
     }
 }

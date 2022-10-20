@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreParticipantsRequest;
 use App\Http\Requests\UpdateParticipantsRequest;
 use App\Models\Participant;
+use App\Models\SecretList;
+use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
 class ParticipantsController extends Controller
@@ -12,10 +14,26 @@ class ParticipantsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @return \Inertia\Response
+     */
+    public function index(SecretList $secretList)
+    {
+        return Inertia::render('AuthenticatedSecretList/DrawParticipants', [
+            'list' => $secretList,
+            'participants' => $secretList->participant()->get(),
+        ]);
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \App\Models\SecretList $secretList
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function drawParticipants(SecretList $secretList): \Illuminate\Http\Response
     {
+        return '';
     }
 
     /**

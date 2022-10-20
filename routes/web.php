@@ -46,8 +46,8 @@ Route::middleware([
     Route::post('/secretList/{secretList}/delete', [SecretListController::class, 'destroy'])->name('List.destroy');
     Route::post('/secretList/{secretList}/update', [SecretListController::class, 'update'])->name('List.update');
 
-    //Participants
-    Route::get('/secretList/{secretList}/draw', [ParticipantsController::class, 'index'])->name('ParticipantList.draw');
+    //Drawing
+    Route::post('/secretList/{secretList}/draw', [SecretListController::class, 'drawParticipants'])->name('List.drawParticipants');
 
     //Generates the signed URL
     Route::get('/generateList/{secretList}', [SecretListController::class,'show'])->name('List.generateUrl');
