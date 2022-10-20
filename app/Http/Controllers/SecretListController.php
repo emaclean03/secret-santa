@@ -126,21 +126,21 @@ class SecretListController extends Controller
         $participants = $secretList->participant()->get();
         $usedPeople = [];
 
-        foreach ($participants as $person){
+        foreach ($participants as $person) {
             $randomPerson = $participants->random();
-            while($randomPerson->id === $person->id || in_array($randomPerson->id, $usedPeople)) {
+            while ($randomPerson->id === $person->id || in_array($randomPerson->id, $usedPeople)) {
                 $randomPerson = $participants->random();
             }
             $person->participant_id = $randomPerson->id;
             $person->save();
             $usedPeople[] = $randomPerson->id;
         }
-        $secretList->update(['has_been_drawn'=>true]);
+        $secretList->update(['has_been_drawn' => true]);
 
         try {
-            $list = $secretList->participant()->with('parent')->get();
-            dispatch(new SendEmailJob($list));
-        } catch (Exception $e){
+            $participants = $secretList->participant()->with('parent')->get();
+            dispatch(new SendEmailJob($participants, $secretList));
+        } catch (Exception $e) {
             Log::info($e->getMessage());
         }
         return Redirect::back()->banner('Successfully drawn names. Emails have been dispatched.');

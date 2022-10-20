@@ -17,17 +17,19 @@ class SendEmailJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $details;
+    public $secretList;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($details, $secretList)
     {
         $this->details = $details;
+        $this->secretList = $secretList;
 
         foreach($this->details as $detail){
-            Mail::to($detail->email)->send(new TestAmazonEmail($detail->parent->email));
+            Mail::to($detail->email)->send(new TestAmazonEmail($detail->parent, $secretList));
         }
 
     }

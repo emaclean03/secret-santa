@@ -11,15 +11,17 @@ class TestAmazonEmail extends Mailable
 {
     use Queueable, SerializesModels;
     public $details;
+    public $secretList;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($details, $secretList)
     {
         $this->details = $details;
+        $this->secretList = $secretList;
     }
 
     /**
