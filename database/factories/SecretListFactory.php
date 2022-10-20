@@ -21,6 +21,7 @@ class SecretListFactory extends Factory
             'list_name'=> $this->faker->domainWord,
             'name' => $this->faker->name,
             'email' => $this->faker->email,
+            'has_been_drawn' => true,
         ];
     }
 }

@@ -73,7 +73,7 @@ class SecretListController extends Controller
     {
         return Inertia::render('AuthenticatedSecretList/SecretList', [
             'list' => $secretList,
-            'participants' => $secretList->participant()->get(),
+            'participants' => $secretList->participant()->with('parent')->get(),
             'signedUrl' => URL::signedRoute('public.index', $secretList->id)
         ]);
     }
@@ -116,10 +116,23 @@ class SecretListController extends Controller
      * Remove the specified resource from storage.
      *
      * @param \App\Models\SecretList $secretList
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function drawParticipants(SecretList $secretList): \Illuminate\Http\Response
+    public function drawParticipants(SecretList $secretList): \Illuminate\Http\JsonResponse
     {
-        return '';
+        $participants = $secretList->participant()->get();
+        $usedPeople = [];
+
+        foreach ($participants as $person){
+            $randomPerson = $participants->random();
+            while($randomPerson->id === $person->id || in_array($randomPerson->id, $usedPeople)) {
+                $randomPerson = $participants->random();
+            }
+            $person->participant_id = $randomPerson->id;
+            $person->save();
+            $usedPeople[] = $randomPerson->id;
+        }
+        $secretList->update(['has_been_drawn'=>true]);
+        return Response()->json($secretList);
     }
 }

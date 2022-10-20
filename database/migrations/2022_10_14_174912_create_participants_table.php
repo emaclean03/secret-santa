@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('secret_list_id')->constrained()->onDelete('cascade');
-
+            $table->foreignId('participant_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('full_name');
             $table->string('email')->nullable();
             $table->timestamps();
