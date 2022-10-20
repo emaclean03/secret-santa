@@ -310,8 +310,7 @@
                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <p>Hi there,</p>
-                                        <p>This is a test</p>
+                                        {{$details}}
                                     </td>
                                 </tr>
                             </table>

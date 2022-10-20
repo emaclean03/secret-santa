@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSecretListRequest;
 use App\Http\Requests\UpdateSecretListRequest;
+use App\Jobs\SendEmailJob;
 use App\Models\Participant;
 use App\Models\SecretList;
+use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
@@ -118,7 +121,7 @@ class SecretListController extends Controller
      * @param \App\Models\SecretList $secretList
      * @return \Illuminate\Http\JsonResponse
      */
-    public function drawParticipants(SecretList $secretList): \Illuminate\Http\JsonResponse
+    public function drawParticipants(SecretList $secretList)
     {
         $participants = $secretList->participant()->get();
         $usedPeople = [];
@@ -133,6 +136,13 @@ class SecretListController extends Controller
             $usedPeople[] = $randomPerson->id;
         }
         $secretList->update(['has_been_drawn'=>true]);
-        return Response()->json($secretList);
+
+        try {
+            $list = $secretList->participant()->with('parent')->get();
+            dispatch(new SendEmailJob($list));
+        } catch (Exception $e){
+            Log::info($e->getMessage());
+        }
+        return Redirect::back()->banner('Successfully drawn names. Emails have been dispatched.');
     }
 }
