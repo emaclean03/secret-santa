@@ -10,6 +10,8 @@
             <div class="text-h6">Participants</div>
           </q-card-section>
           <q-separator/>
+          <div class="text-center mt-4">Please add your email if it has not yet been added by clicking on the email row of your name.</div>
+
           <q-card-section class="">
             <ParticipantList :list="list" :participants="participants"/>
           </q-card-section>

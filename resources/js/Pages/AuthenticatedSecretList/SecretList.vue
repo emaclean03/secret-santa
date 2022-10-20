@@ -20,6 +20,9 @@
       <div class="w-full lg:w-1/2">
         <ListInformation :list="list"/>
       </div>
+      <div v-if="list.has_been_drawn" class="w-full lg:w-1/2">
+        <DrawnNames :list="list" :showDrawnNames="showDrawnNames" :participants="participants"/>
+      </div>
     </div>
     <div class="flex flex-row">
       <div class="w-full text-center">
@@ -29,7 +32,8 @@
           </q-card-section>
           <q-separator/>
           <q-card-actions>
-                  <q-btn color="primary" @click="handleAddParticipant(list.id)">Start the draw</q-btn>
+            <q-btn v-if="!list.has_been_drawn" color="primary" @click="handleStartDraw(list.id)">Start the draw</q-btn>
+            <q-btn v-else color="primary" @click="handleShowDrawnNames">Show drawn names</q-btn>
           </q-card-actions>
         </q-card>
       </div>
@@ -45,22 +49,44 @@ interface Props {
   participants: [{
     email: string,
     full_name: string,
+    drawn_name: string,
+    parent:[{
+      full_name: string
+    }]
   }],
   list: {
     id: number,
     email: string,
     list_name: string,
     name: string,
+    has_been_drawn: boolean,
   }
 }
+
 const props = defineProps<Props>()
-const handleAddParticipant = (listId) => {
-  //Add new participant text box
-  console.log('adding');
+
+const showDrawnNames = ref(false);
+
+const handleShowDrawnNames = () => {
+  if(!confirm('Are you sure you want to view the drawn names?')){
+    return false;
+  }else{
+    showDrawnNames.value = !showDrawnNames.value;
+  }
+}
+
+const handleStartDraw = (listId) => {
+  Inertia.post(`/secretList/${listId}/draw`, {}, {
+    onSuccess: (page) => {
+      console.log(page);
+    },
+  })
 }
 
 
 import AppLayout from "@/Layouts/AppLayout.vue";
 import ListInformation from "@/Components/Shared/ListInformation.vue";
 import {Inertia} from "@inertiajs/inertia";
+import DrawnNames from "@/Components/Dashboard/DrawnNames.vue";
+import {ref} from "vue";
 </script>

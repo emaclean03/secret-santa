@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('list_url')->nullable();
             $table->string('name');
             $table->string('email');
+            $table->decimal('list_budget')->default(0.00);
+            $table->date('event_date')->nullable(true);
+            $table->boolean('has_been_drawn')->default(false);
             $table->timestamps();
         });
     }

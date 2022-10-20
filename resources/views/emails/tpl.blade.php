@@ -310,8 +310,22 @@
                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <p>Hi there,</p>
-                                        <p>This is a test</p>
+                                        <h3>Event Name: {{$secretList->list_name}}</h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Event Budget: ${{$secretList->list_budget}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>Event Date: {{$secretList->event_date}}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h2>You have drawn: {{$details->full_name}}</h2>
                                     </td>
                                 </tr>
                             </table>
