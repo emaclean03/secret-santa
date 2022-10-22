@@ -118,7 +118,7 @@ const props = defineProps<Props>()
           </h3>
           <p class="text-gray-600 mb-8">
             After starting the drawing, each participant will be assigned another participant by random.
-            Each participant will receive an email with who their participant is, along with the even information.
+            Each participant will receive an email with who their participant is, along with the event information.
           </p>
         </div>
       </div>
