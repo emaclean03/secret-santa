@@ -13,10 +13,12 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 /* From the FontAwesome Docs */
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {faCheck, faX} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faX, fa1, fa2, fa3} from "@fortawesome/free-solid-svg-icons";
 
 library.add(faCheck)
 library.add(faX)
+library.add(fa1, fa2, fa3)
+
 
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
