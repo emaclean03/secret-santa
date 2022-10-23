@@ -1,17 +1,34 @@
 <template>
-  <div class="q-pa-md" style="max-width: 400px">
+  <div class="w-auto lg:w-1/2 mx-auto">
     <div class="flex flex-row">
       <div class="w-full text-center">
         <q-card class="m-2">
           <q-card-section>
-            <div class="text-h6">Create a new list</div>
+            <div class="text-h6">New secret list</div>
           </q-card-section>
           <q-card-section>
             <q-input
                 filled
                 v-model="secretListName"
-                label="Name of this list"
+                label="Name of list"
                 lazy-rules
+                :rules="[ val => val && val.length > 0 || 'Please type something']"
+            />
+            <q-input
+                filled
+                v-model.number="secretListBudget"
+                label="Budget"
+                lazy-rules
+                type="number"
+                :rules="[ val => val && val.length > 0 || 'Please type something']"
+            />
+
+            <q-input
+                filled
+                v-model="secretListEventDate"
+                label="Event date"
+                lazy-rules
+                type="date"
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
             />
           </q-card-section>
@@ -58,18 +75,20 @@ const participantNames = ref([
   {name: ''}
 ]);
 const secretListName = ref(null);
+const secretListBudget = ref(null);
+const secretListEventDate = ref(null);
 
 const addNewUser = () => {
-  for (let i = 0; i < 3; i++) {
-    participantNames.value.push({name: ''});
-  }
+  participantNames.value.push({name: ''});
 }
 
 const onSubmit = () => {
-  Inertia.post('/secretList/store', {participantNames: participantNames.value, listName: secretListName.value}, {
+  Inertia.post('/secretList/store', {participantNames: participantNames.value, listName: secretListName.value, listBudget: secretListBudget.value, eventDate:secretListEventDate.value}, {
     onSuccess: (page) => {
       secretListName.value = '';
-      participantNames.value = [];
+      participantNames.value = [ {name: ''},
+        {name: ''},
+        {name: ''}];
     },
 
   })

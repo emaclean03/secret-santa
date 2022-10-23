@@ -14,6 +14,9 @@ class SecretList extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'event_date'  => 'date:m-d-Y',
+    ];
 
     public function user(): HasMany
     {
