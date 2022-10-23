@@ -1,31 +1,28 @@
 <template>
   <AppLayout class="w-full">
     <div class="flex flex-row ">
-      <div class="w-full text-center">
+      <div class="mx-auto lg:w-3/4 w-full text-center">
         <q-card>
           <q-card-section>
-            <div class="text-h6">Share this URL</div>
+            <ListInformation :list="list"/>
           </q-card-section>
-          <q-separator/>
           <q-card-section>
+            <div class="text-h6">Share this URL <button class="inline" @click="copyToClipBoard((e)=>e.target.value)"><font-awesome-icon icon="fa-solid fa-copy" /></button></div>
             <q-input v-model="signedUrl"/>
           </q-card-section>
         </q-card>
       </div>
     </div>
     <div class="flex flex-row mt-12">
-      <div class="w-full lg:w-1/2">
+      <div class="w-full lg:w-3/4 mx-auto">
         <ParticipantList :list="list" :participants="participants"/>
-      </div>
-      <div class="w-full lg:w-1/2">
-        <ListInformation :list="list"/>
       </div>
       <div v-if="list.has_been_drawn" class="w-full lg:w-1/2">
         <DrawnNames :list="list" :showDrawnNames="showDrawnNames" :participants="participants"/>
       </div>
     </div>
     <div class="flex flex-row">
-      <div class="w-full text-center">
+      <div class="lg:w-3/4 w-full mx-auto text-center">
         <q-card class="m-2">
           <q-card-section>
             <div class="text-h6">Actions</div>
@@ -58,6 +55,8 @@ interface Props {
     id: number,
     email: string,
     list_name: string,
+    event_date: string,
+    list_budget: number,
     name: string,
     has_been_drawn: boolean,
   }
@@ -66,6 +65,10 @@ interface Props {
 const props = defineProps<Props>()
 
 const showDrawnNames = ref(false);
+
+const copyToClipBoard = () => {
+  navigator.clipboard.writeText(props.signedUrl);
+}
 
 const handleShowDrawnNames = () => {
   if(!confirm('Are you sure you want to view the drawn names?')){
