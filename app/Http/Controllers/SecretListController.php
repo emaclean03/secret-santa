@@ -44,11 +44,14 @@ class SecretListController extends Controller
      */
     public function store(StoreSecretListRequest $request)
     {
+
         $list = SecretList::create([
             'list_name' => $request->listName,
             'name' => Auth::user()->name,
             'email' => Auth::user()->email,
             'user_id' => Auth::user()->id,
+            'list_budget' => $request->listBudget,
+            'event_date' => $request->eventDate,
         ]);
 
 
@@ -127,6 +130,10 @@ class SecretListController extends Controller
         $usedPeople = [];
 
         foreach ($participants as $person) {
+            //This person has no email, we need emails!
+            if($person->email === null || $person->email === ''){
+                return Redirect::back()->dangerBanner('Please ensure an email is set for ' . $person->full_name);
+            }
             $randomPerson = $participants->random();
             while ($randomPerson->id === $person->id || in_array($randomPerson->id, $usedPeople)) {
                 $randomPerson = $participants->random();
