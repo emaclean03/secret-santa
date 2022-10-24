@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import {Head, Link} from '@inertiajs/inertia-vue3';
-import bg from '../../images/welcome-bg.jpg'
 
 interface Props {
   canLogin: Boolean,
@@ -13,7 +12,7 @@ const props = defineProps<Props>()
 <template>
   <Head title="Welcome"/>
 
-  <div class="w-full mx-auto" :style="{ backgroundImage: `url(${bg})` }">
+  <div class="w-full mx-auto bg-gradient-to-r from-cyan-400 to-blue-300">
     <nav class="mx-auto w-full z-30">
       <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto mt-2 lg:mt-0 text-black p-4 lg:p-0 z-20">
