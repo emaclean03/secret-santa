@@ -6,16 +6,27 @@
     <q-separator/>
     <q-table
         :rows="participants"
+        style="height: 400px"
         :columns="columns"
         row-key="name"
+        :filter="filter"
+        virtual-scroll
+        :rows-per-page-options="[0]"
     >
+      <template v-slot:top-right>
+        <q-input dense debounce="150" v-model="filter" placeholder="Search name or email">
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </template>
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="full_name" :props="props">
             {{ props.row.full_name }}
             <q-popup-edit @save="(val) => handleSaveFullName(val, props.row.id)" title="Update name"
                           v-model="props.row.full_name" buttons v-slot="scope">
-              <q-input v-model="scope.value" dense autofocus counter/>
+              <q-input v-model="scope.value" dense autofocus/>
             </q-popup-edit>
           </q-td>
           <q-td key="email" :props="props">
@@ -33,6 +44,7 @@
 
 <script lang="ts" setup>
 import {Inertia} from "@inertiajs/inertia";
+import {ref} from "vue";
 
 interface Props {
   participants: [{
@@ -48,7 +60,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-
+const filter = ref('');
 const columns = [
   {
     name: 'full_name',

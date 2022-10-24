@@ -1,11 +1,10 @@
 <template>
   <q-card class="">
     <q-card-section>
-      <div class="text-h6">This secret list</div>
+      <h4><strong>{{ list.list_name }}</strong></h4>
     </q-card-section>
     <q-separator/>
     <q-card-section>
-      <p><strong>List name:</strong> {{ list.list_name }}</p>
       <p><strong>Event Date:</strong> {{list.event_date}}</p>
       <p><strong>Budget:</strong> ${{list.list_budget}}</p>
     </q-card-section>
