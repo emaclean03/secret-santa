@@ -1,27 +1,18 @@
 <template>
-  <AppLayout class="w-full">
-    <div class="flex flex-row">
-
-    </div>
-    <div class="flex flex-row mt-12">
-      <div class="w-full">
-        <q-card class="m-2 w-1/2">
-          <q-card-section>
-            <div class="text-h6">Participants</div>
-          </q-card-section>
+    <div class="flex w-full text-center bg-gray-200">
+      <div class="w-full mx-auto">
+        <q-card class="m-2 mt-4">
           <q-separator/>
-          <div class="text-center mt-4">Please add your email if it has not yet been added by clicking on the email row of your name.</div>
-
+          <font-awesome-icon icon="fa-solid fa-info-circle" /><div class="text-center inline ml-1 font-bold">Please add your email if it has not yet been added by clicking on the email row of your name.</div>
+          <div>
+            <small>If you would like to create a wish-list, please register <a href="/register" class="underline text-blue-600 hover:text-blue-800">Here!</a> *Coming soon</small>
+          </div>
           <q-card-section class="">
             <ParticipantList :list="list" :participants="participants"/>
           </q-card-section>
         </q-card>
       </div>
-      <div class="sm:w-full lg:w-1/2">
-
-      </div>
     </div>
-  </AppLayout>
 </template>
 
 <script lang="ts" setup>
