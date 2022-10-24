@@ -41,8 +41,8 @@ const props = defineProps<Props>()
       <hr class="border-b border-gray-100 opacity-25 my-0 py-0"/>
     </nav>
     <!--Hero-->
-    <div class="pt-24">
-      <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+    <div class="pt-24 ">
+      <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center ">
         <!--Left Col-->
         <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
           <p class="uppercase text-2xl tracking-loose w-full font-bold">Mystery Drawing</p>
@@ -79,8 +79,8 @@ const props = defineProps<Props>()
         </g>
       </svg>
     </div>
-    <section class="bg-white border-b py-8">
-      <div class="container max-w-5xl mx-auto m-8">
+    <section class="bg-gradient-to-r from-cyan-400 to-blue-300 border-b py-8">
+      <div class="container max-w-5xl mx-auto m-8 ">
         <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
           How it works
         </h2>
@@ -93,7 +93,7 @@ const props = defineProps<Props>()
             <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
               <font-awesome-icon icon="fa-solid fa-1"/>
               <div class="inline ml-2">. Create your free account.</div>
-              <div v-if="!$page.props.user">
+              <div class="-ml-4" v-if="!$page.props.user">
                 <Link v-if="canRegister && !$page.props.user" :href="route('register')"
                       class="ml-4 text-xs text-gray-700 dark:text-gray-500 underline">Register
                 </Link>
@@ -104,7 +104,7 @@ const props = defineProps<Props>()
                 </div>
               </div>
             </h3>
-            <p class="text-gray-600 mb-8">
+            <p class="text-gray-800 mb-8">
               This will allow you to retain all of your lists from previous events.
               <small class="block mt-1">Note * Only the list creator will need to register an account. </small>
             </p>
@@ -119,7 +119,7 @@ const props = defineProps<Props>()
                 <font-awesome-icon icon="fa-solid fa-2"/>
                 <div class="inline ml-2">. Create your first list.</div>
               </h3>
-              <p class="text-gray-600 mb-8">
+              <p class="text-gray-800 ">
                 Create a new list with a list of your friends. You will have a secret link that your friends can access.
                 Your friends will not have to register to use this link.
                 The link will allow them to add their own contact info!
@@ -138,7 +138,7 @@ const props = defineProps<Props>()
               <font-awesome-icon icon="fa-solid fa-3"/>
               <div class="inline ml-2">. Start the drawing!</div>
             </h3>
-            <p class="text-gray-600 mb-8">
+            <p class="text-gray-800  mb-8">
               After starting the drawing, each participant will be assigned another participant by random.
               Each participant will receive an email with who their participant is, along with the event information.
             </p>
@@ -147,10 +147,9 @@ const props = defineProps<Props>()
       </div>
     </section>
     <!--Footer-->
-    <footer class="bg-white">
+<!--    <footer class="bg-white">
       <div class="container mx-auto px-8">
         <div class="w-full flex flex-col md:flex-row py-6">
-
           <div class="flex-1">
             <p class="uppercase text-gray-500 md:mb-6">Links</p>
             <ul class="list-reset mb-6">
@@ -206,6 +205,6 @@ const props = defineProps<Props>()
           </div>
         </div>
       </div>
-    </footer>
+    </footer>-->
   </div>
 </template>
