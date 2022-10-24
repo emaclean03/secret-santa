@@ -10,14 +10,14 @@
             <q-input
                 filled
                 v-model="secretListName"
-                label="Name of list"
+                label="Name of list *"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
             />
             <q-input
                 filled
                 v-model.number="secretListBudget"
-                label="Budget"
+                label="$ Budget"
                 lazy-rules
                 type="number"
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
@@ -75,7 +75,7 @@ const participantNames = ref([
   {name: ''}
 ]);
 const secretListName = ref(null);
-const secretListBudget = ref(null);
+const secretListBudget = ref(0);
 const secretListEventDate = ref(null);
 
 const addNewUser = () => {
