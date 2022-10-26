@@ -2,6 +2,7 @@
   <q-card class="">
     <q-card-section>
       <h4><strong>{{ list.list_name }}</strong></h4>
+      <div v-if="list.has_been_drawn"><small>*This list has already been drawn</small></div>
     </q-card-section>
     <q-separator/>
     <q-card-section>

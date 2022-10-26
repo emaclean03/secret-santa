@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SecretList;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class PublicListController extends Controller
@@ -30,5 +31,7 @@ class PublicListController extends Controller
              $secretList->participant()->where('id', $request->id)->update(['email'=>$request->value]);
              break;
      }
+
+        return Redirect::back()->banner('Successfully updated email');
     }
 }

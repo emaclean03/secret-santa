@@ -18,6 +18,7 @@ class SendEmailJob implements ShouldQueue
 
     public $details;
     public $secretList;
+
     /**
      * Create a new job instance.
      *
@@ -27,10 +28,14 @@ class SendEmailJob implements ShouldQueue
     {
         $this->details = $details;
         $this->secretList = $secretList;
-
-        foreach($this->details as $detail){
-            Mail::to($detail->email)->send(new TestAmazonEmail($detail->parent, $secretList));
+        foreach ($this->details as $detail) {
+            try {
+                Mail::to($detail->email)->send(new TestAmazonEmail($detail->parent, $secretList));
+            } catch (\Exception $e) {
+                Log::error('Error sending email' . $e->getMessage());
+            }
         }
+
 
     }
 
@@ -42,6 +47,6 @@ class SendEmailJob implements ShouldQueue
     public function handle(): void
     {
         //dd('hello');
-       //Mail::to('emaclean03@aol.com')->send(new TestAmazonEmail($this->details));
+        //Mail::to('emaclean03@aol.com')->send(new TestAmazonEmail($this->details));
     }
 }

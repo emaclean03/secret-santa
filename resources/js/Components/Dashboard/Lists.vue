@@ -3,7 +3,7 @@
     <q-card class="m-2 lg:w-1/2 mx-auto">
       <q-card-section>
         <div class="text-h5 text-center">{{ list.list_name }}</div>
-        <div class="text-xsm text-center">Draw Date: {{ list.event_date }}</div>
+        <div class="text-xsm text-center">Event Date: {{ list.event_date }}</div>
       </q-card-section>
       <q-separator class="bg-black "/>
 
