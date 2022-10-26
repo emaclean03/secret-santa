@@ -17,7 +17,7 @@
       <div class="w-full lg:w-3/4 mx-auto">
         <ParticipantList :list="list" :participants="participants"/>
       </div>
-      <div v-if="list.has_been_drawn" class="w-full lg:w-1/2">
+      <div v-if="list.has_been_drawn" class="w-full mx-auto lg:w-3/4">
         <DrawnNames :list="list" :showDrawnNames="showDrawnNames" :participants="participants"/>
       </div>
     </div>
@@ -30,7 +30,7 @@
           <q-separator/>
           <q-card-actions>
             <q-btn v-if="!list.has_been_drawn" color="primary" @click="handleStartDraw(list.id)">Start the draw</q-btn>
-            <q-btn v-else color="primary" @click="handleShowDrawnNames">Show drawn names</q-btn>
+            <q-btn v-else color="primary" @click="handleShowDrawnNames">{{ showDrawnNameButton }}</q-btn>
           </q-card-actions>
         </q-card>
       </div>
@@ -65,16 +65,23 @@ interface Props {
 const props = defineProps<Props>()
 
 const showDrawnNames = ref(false);
+const showDrawnNameButton = ref('Show drawn names');
 
 const copyToClipBoard = () => {
   navigator.clipboard.writeText(props.signedUrl);
 }
 
 const handleShowDrawnNames = () => {
-  if(!confirm('Are you sure you want to view the drawn names?')){
-    return false;
+  if(showDrawnNameButton.value === 'Show drawn names'){
+    if(!confirm('Are you sure you want to view the drawn names?')){
+      return false;
+    }else{
+      showDrawnNames.value = !showDrawnNames.value;
+      showDrawnNameButton.value = 'Hide drawn names';
+    }
   }else{
     showDrawnNames.value = !showDrawnNames.value;
+    showDrawnNameButton.value = 'Show drawn names'
   }
 }
 

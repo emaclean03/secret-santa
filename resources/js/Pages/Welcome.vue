@@ -16,7 +16,7 @@ const props = defineProps<Props>()
     <nav class="mx-auto w-full z-30">
       <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto mt-2 lg:mt-0 text-black p-4 lg:p-0 z-20">
-          <ul class="list-reset lg:flex justify-end flex-1 items-center">
+          <ul class="list-reset flex justify-end flex-1 items-center">
             <li class="mr-3">
               <Link v-if="$page.props.user" :href="route('dashboard')"
                     class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
@@ -79,7 +79,7 @@ const props = defineProps<Props>()
         </g>
       </svg>
     </div>
-    <section class="bg-gradient-to-r from-cyan-400 to-blue-300 border-b py-8">
+    <section class="bg-white border-b py-8">
       <div class="container max-w-5xl mx-auto m-8 ">
         <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
           How it works
@@ -130,10 +130,10 @@ const props = defineProps<Props>()
       </div>
       <div class="container max-w-5xl mx-auto m-8">
         <div class="w-full mb-4">
-          <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
+          <div class="h-1 mx-auto gradient w-64 opacity-25 rounded-t"></div>
         </div>
         <div class="flex flex-wrap">
-          <div class="w-5/6 sm:w-1/2 p-6">
+          <div class="w-5/6 sm:w-1/2">
             <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
               <font-awesome-icon icon="fa-solid fa-3"/>
               <div class="inline ml-2">. Start the drawing!</div>

@@ -4,7 +4,7 @@
       <div class="w-full text-center">
         <q-card class="m-2">
           <q-card-section>
-            <div class="text-h6">New secret list</div>
+            <div class="text-h6">Create new secret list</div>
           </q-card-section>
           <q-card-section>
             <q-input
@@ -50,9 +50,10 @@
                   :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
               <div>
-                <q-btn label="Add more" @click="addNewUser" class="mr-2" color="primary"/>
+                <q-btn label="Add participant" @click="addNewUser" class="mr-2" color="primary"/>
                 <br>
               </div>
+              <q-separator class="bg-black "/>
               <q-card-actions>
                 <q-btn label="Submit" type="submit" color="primary"/>
                 <q-btn label="Reset" type="reset" color="negative" class="q-ml-sm"/>

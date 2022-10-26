@@ -1,12 +1,12 @@
 <template>
   <q-card class="m-2">
     <q-card-section>
-      <div class="text-h6">Participants</div>
+      <div class="text-h6 text-center">Participants</div>
     </q-card-section>
     <q-separator/>
     <q-table
         :rows="participants"
-        style="height: 400px"
+        style="height: 310px"
         :columns="columns"
         row-key="name"
         :filter="filter"

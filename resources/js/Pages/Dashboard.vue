@@ -6,11 +6,11 @@
       </h2>
     </template>
 
-    <div class="flex flex-row">
-      <div class="w-1/2 border-2 border-gray-200 rounded-lg text-ce">
+    <div class="md:flex md:flex-row">
+      <div class="w-3/4 mx-auto border-2 border-gray-200 rounded-lg text-ce">
         <List :lists="lists"/>
       </div>
-      <div class="w-1/2 border-2 border-gray-200 rounded-lg">
+      <div class="w-3/4 mx-auto border-2 border-gray-200 rounded-lg">
         <NewList/>
       </div>
     </div>
