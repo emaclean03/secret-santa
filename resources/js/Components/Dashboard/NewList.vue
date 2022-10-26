@@ -53,6 +53,7 @@
                 <q-btn label="Add participant" @click="addNewUser" class="mr-2" color="primary"/>
                 <br>
               </div>
+              <q-separator class="bg-black "/>
               <q-card-actions>
                 <q-btn label="Submit" type="submit" color="primary"/>
                 <q-btn label="Reset" type="reset" color="negative" class="q-ml-sm"/>
