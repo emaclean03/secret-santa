@@ -1,7 +1,7 @@
 <template>
   <q-card class="m-2" v-show="showDrawnNames">
     <q-card-section>
-      <div class="text-h6">Who has who</div>
+      <div class="text-h6 text-center">Names drawn</div>
     </q-card-section>
     <q-separator/>
     <q-table
@@ -57,12 +57,11 @@ const columns = [
     name: 'parent.full_name',
     required: true,
     label: 'Drawn participant',
-    align: 'left',
+    align: 'center',
     sortable: true
   },
 ]
 
 const props = defineProps<Props>()
 
-console.log(props.participants[0].parent)
 </script>
