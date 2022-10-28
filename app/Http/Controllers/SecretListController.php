@@ -104,7 +104,8 @@ class SecretListController extends Controller
      */
     public function update(UpdateSecretListRequest $request, SecretList $secretList)
     {
-        //
+        $secretList->participant()->where('id', $request->participantId)->delete();
+        return Redirect::back()->banner('Successfully deleted participant');
     }
 
     /**
@@ -117,7 +118,7 @@ class SecretListController extends Controller
     {
         try {
             $secretList->delete();
-        } catch (Exception $e){
+        } catch (Exception $e) {
             Log::error('Error deleting list: ' . $e->getMessage());
         }
 
@@ -137,7 +138,7 @@ class SecretListController extends Controller
 
         foreach ($participants as $person) {
             //This person has no email, we need emails!
-            if($person->email === null || $person->email === ''){
+            if ($person->email === null || $person->email === '') {
                 return Redirect::back()->dangerBanner('Please ensure an email is set for ' . $person->full_name);
             }
             $randomPerson = $participants->random();
