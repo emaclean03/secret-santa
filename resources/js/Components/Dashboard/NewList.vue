@@ -4,18 +4,20 @@
       <div class="w-full text-center">
         <q-card class="m-2">
           <q-card-section>
-            <div class="text-h6">Create new secret list</div>
+            <div class="text-h6">Create New Mystery List</div>
           </q-card-section>
           <q-card-section>
             <q-input
                 filled
                 v-model="secretListName"
                 label="Name of list *"
+                clearable
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
             />
             <q-input
                 filled
+                clearable
                 v-model.number="secretListBudget"
                 label="$ Budget"
                 lazy-rules
@@ -28,6 +30,7 @@
                 v-model="secretListEventDate"
                 label="Event date"
                 lazy-rules
+                clearable
                 type="date"
                 :rules="[ val => val && val.length > 0 || 'Please type something']"
             />
@@ -41,6 +44,7 @@
             >
               <q-input
                   v-for="participant in participantNames"
+                  clearable
                   filled
                   v-model="participant.name"
                   label="Participant Name *"
@@ -50,13 +54,12 @@
                   :rules="[ val => val && val.length > 0 || 'Please type something']"
               />
               <div>
-                <q-btn label="Add participant" @click="addNewUser" class="mr-2" color="primary"/>
+                <q-btn label="Add participant" @click="addNewUser" class="mr-2 " color="blue-grey-9"/>
                 <br>
               </div>
               <q-separator class="bg-black "/>
               <q-card-actions>
-                <q-btn label="Submit" type="submit" color="primary"/>
-                <q-btn label="Reset" type="reset" color="negative" class="q-ml-sm"/>
+                <q-btn label="Submit" size="md" type="submit" class="mx-auto" color="blue-grey-9"/>
               </q-card-actions>
             </q-form>
           </q-card-section>
@@ -93,13 +96,6 @@ const onSubmit = () => {
     },
 
   })
-}
-const onReset = () => {
-  participantNames.value = [];
-  secretListName.value = '';
-  for (let i = 0; i < 3; i++) {
-    participantNames.value.push({name: ''});
-  }
 }
 
 </script>
