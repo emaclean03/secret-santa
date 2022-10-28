@@ -1,17 +1,18 @@
 <template>
-  <q-card class="m-2">
+  <q-card class="m-2 h-full">
     <q-card-section>
       <div class="text-h6 text-center">Participants</div>
     </q-card-section>
     <q-separator/>
     <q-table
         :rows="participants"
-        style="height: 310px"
+        style="height: 600px"
+
         :columns="columns"
         row-key="name"
         :filter="filter"
         virtual-scroll
-        :rows-per-page-options="[0]"
+        :rows-per-page-options="[20]"
     >
       <template v-slot:top-right>
         <q-input dense debounce="150" v-model="filter" placeholder="Search name or email">
