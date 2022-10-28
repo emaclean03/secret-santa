@@ -1,8 +1,7 @@
 <template>
     <div class="flex w-full h-screen text-center bg-gradient-to-r from-cyan-400 to-blue-300 ">
       <div class="w-3/4 mx-auto">
-
-        <q-card class="m-2 mt-4 w-3/4 mx-auto">
+        <q-card class="h-max m-2 mt-4 w-3/4 mx-auto">
           <q-separator/>
           <font-awesome-icon icon="fa-solid fa-info-circle" /><div class="text-center inline ml-1 font-bold">Please add your email if it has not yet been added by clicking on the email row of your name.</div>
           <div>
