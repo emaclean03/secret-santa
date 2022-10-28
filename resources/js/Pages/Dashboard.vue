@@ -1,16 +1,14 @@
 <template>
   <AppLayout title="Dashboard">
-    <template #header>
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Dashboard
-      </h2>
-    </template>
-
     <div class="md:flex md:flex-row">
-      <div class="w-3/4 mx-auto border-2 border-gray-200 rounded-lg text-ce">
+      <div class="w-3/4 mx-auto border-1 border-gray-200 rounded-lg">
+        <div class="text-center mt-4" v-if="lists.length === 0">
+          <h5><strong>You do not have any mystery lists!</strong>
+          <div><small>*Create a new on the right</small></div></h5>
+        </div>
         <List :lists="lists"/>
       </div>
-      <div class="w-3/4 mx-auto border-2 border-gray-200 rounded-lg">
+      <div class="w-3/4 mx-auto border-l-2 border-gray-200">
         <NewList/>
       </div>
     </div>

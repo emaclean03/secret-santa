@@ -1,6 +1,6 @@
 <template>
   <AppLayout class="w-full">
-    <div class="flex flex-row ">
+    <div class="flex flex-row mx-a lg:mt-4">
       <div class="mx-auto lg:w-3/4 w-full text-center">
         <q-card>
           <q-card-section>
@@ -13,7 +13,7 @@
         </q-card>
       </div>
     </div>
-    <div class="flex flex-row mt-12">
+    <div class="flex flex-row mt-4">
       <div class="w-full lg:w-3/4 mx-auto">
         <ParticipantList :list="list" :participants="participants"/>
       </div>
@@ -31,6 +31,7 @@
           <q-card-actions>
             <q-btn v-if="!list.has_been_drawn" color="primary" @click="handleStartDraw(list.id)">Start the draw</q-btn>
             <q-btn v-else color="primary" @click="handleShowDrawnNames">{{ showDrawnNameButton }}</q-btn>
+            <q-btn color="red-5" @click="deleteList(list.id)">Delete this list</q-btn>
           </q-card-actions>
         </q-card>
       </div>
@@ -90,6 +91,12 @@ const handleStartDraw = (listId) => {
     onSuccess: (page) => {
       console.log(page);
     },
+  })
+}
+
+const deleteList = (listId) => {
+  Inertia.post(`/secretList/${listId}/delete`, {}, {
+    onBefore: () => confirm('Are you sure you want to delete this list?'),
   })
 }
 
