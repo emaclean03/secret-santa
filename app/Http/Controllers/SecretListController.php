@@ -115,7 +115,13 @@ class SecretListController extends Controller
      */
     public function destroy(SecretList $secretList)
     {
-        $secretList->delete();
+        try {
+            $secretList->delete();
+        } catch (Exception $e){
+            Log::error('Error deleting list: ' . $e->getMessage());
+        }
+
+        return redirect('dashboard')->banner('Successfully deleted the list');
     }
 
     /**
@@ -153,3 +159,4 @@ class SecretListController extends Controller
         return Redirect::back()->banner('Successfully drawn names. Emails have been dispatched.');
     }
 }
+
