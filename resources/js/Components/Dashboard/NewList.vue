@@ -79,19 +79,17 @@
 import {ref} from "vue";
 import {Inertia} from "@inertiajs/inertia";
 
-const partcipantId = ref(0);
-
 const participantNames = ref([
-  {id: partcipantId.value++, name: ''},
-  {id: partcipantId.value++, name: ''},
-  {id: partcipantId.value++, name: ''}
+  { name: ''},
+  { name: ''},
+  { name: ''}
 ]);
 const secretListName = ref(null);
 const secretListBudget = ref(0);
 const secretListEventDate = ref(null);
 
 const addNewUser = () => {
-  participantNames.value.push({id: partcipantId.value++, name: ''});
+  participantNames.value.push({ name: ''});
 }
 
 const onSubmit = () => {
@@ -102,12 +100,11 @@ const onSubmit = () => {
     eventDate: secretListEventDate.value
   }, {
     onSuccess: (page) => {
-      partcipantId.value = 0;
       secretListName.value = '';
       participantNames.value = [
-        {id: partcipantId.value++, name: ''},
-        {id: partcipantId.value++, name: ''},
-        {id: partcipantId.value++, name: ''}
+        { name: ''},
+        { name: ''},
+        { name: ''}
       ];
     },
 

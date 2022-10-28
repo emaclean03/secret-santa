@@ -46,6 +46,9 @@ Route::middleware([
     Route::post('/secretList/{secretList}/delete', [SecretListController::class, 'destroy'])->name('List.destroy');
     Route::post('/secretList/{secretList}/update', [SecretListController::class, 'update'])->name('List.update');
 
+    //Add a participant to an existing secret list
+    Route::post('/participants/{secretList}/store', [ParticipantsController::class, 'store'])->name('Participant.store');
+
     //Drawing
     Route::post('/secretList/{secretList}/draw', [SecretListController::class, 'drawParticipants'])->name('List.drawParticipants');
 
@@ -56,9 +59,11 @@ Route::middleware([
 
 //public routes
 
-//get's the signed URL
+//get's the signed URL and returns the public facing index
 Route::get('/list/{secretList}', [PublicListController::class, 'index'])->name('public.index');
-Route::post('/secretList/{secretList}/update', [PublicListController::class, 'update'])->name('public.list.update');
+
+//Update a participant
+Route::post('/participants/{participant}/update', [ParticipantsController::class, 'update'])->name('public.participant.update');
 
 
 Route::get('/test', function(){

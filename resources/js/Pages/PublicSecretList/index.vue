@@ -10,7 +10,7 @@
           </div>
           <q-separator/>
           <q-card-section class="w-3/4 mx-auto">
-            <ParticipantList :list="list" :participants="participants"/>
+            <PublicParticipantList :list="list" :participants="participants"/>
           </q-card-section>
         </q-card>
       </div>
@@ -18,8 +18,7 @@
 </template>
 
 <script lang="ts" setup>
-import AppLayout from "@/Layouts/AppLayout.vue";
-import ParticipantList from "@/Components/Shared/ParticipantList.vue";
+  import PublicParticipantList from "@/Components/Shared/PublicParticipantList.vue";
 
 interface Props {
   list: {

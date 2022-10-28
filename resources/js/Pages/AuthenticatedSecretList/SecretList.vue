@@ -5,10 +5,26 @@
         <q-card>
           <q-card-section>
             <ListInformation :list="list"/>
+            <div class="flex flex-row justify-center">
+              <div class="m-2" v-if="!list.has_been_drawn">
+                <q-btn color="primary" @click="handleStartDraw(list.id)">Start the draw
+                </q-btn>
+              </div>
+              <div class="m-2" v-else>
+                <q-btn color="primary" @click="handleShowDrawnNames">{{ showDrawnNameButton }}</q-btn>
+              </div>
+              <div class="m-2">
+                <q-btn color="red-5" @click="deleteList(list.id)">Delete this list</q-btn>
+              </div>
+            </div>
           </q-card-section>
           <q-card-section>
-            <div class="text-h6">Share this URL <button class="inline" @click="copyToClipBoard((e)=>e.target.value)"><font-awesome-icon icon="fa-solid fa-copy" /></button></div>
-            <q-input v-model="signedUrl"/>
+            <div class="text-h6">Share this URL
+              <button class="inline" @click="copyToClipBoard((e)=>e.target.value)">
+                <font-awesome-icon icon="fa-solid fa-copy"/>
+              </button>
+            </div>
+            <q-input input-class="text-center" v-model="signedUrl"/>
           </q-card-section>
         </q-card>
       </div>
@@ -19,21 +35,6 @@
       </div>
       <div v-if="list.has_been_drawn" class="w-full mx-auto lg:w-3/4">
         <DrawnNames :list="list" :showDrawnNames="showDrawnNames" :participants="participants"/>
-      </div>
-    </div>
-    <div class="flex flex-row">
-      <div class="lg:w-3/4 w-full mx-auto text-center">
-        <q-card class="m-2">
-          <q-card-section>
-            <div class="text-h6">Actions</div>
-          </q-card-section>
-          <q-separator/>
-          <q-card-actions>
-            <q-btn v-if="!list.has_been_drawn" color="primary" @click="handleStartDraw(list.id)">Start the draw</q-btn>
-            <q-btn v-else color="primary" @click="handleShowDrawnNames">{{ showDrawnNameButton }}</q-btn>
-            <q-btn color="red-5" @click="deleteList(list.id)">Delete this list</q-btn>
-          </q-card-actions>
-        </q-card>
       </div>
     </div>
   </AppLayout>
@@ -48,7 +49,7 @@ interface Props {
     email: string,
     full_name: string,
     drawn_name: string,
-    parent:[{
+    parent: [{
       full_name: string
     }]
   }],
@@ -73,14 +74,14 @@ const copyToClipBoard = () => {
 }
 
 const handleShowDrawnNames = () => {
-  if(showDrawnNameButton.value === 'Show drawn names'){
-    if(!confirm('Are you sure you want to view the drawn names?')){
+  if (showDrawnNameButton.value === 'Show drawn names') {
+    if (!confirm('Are you sure you want to view the drawn names?')) {
       return false;
-    }else{
+    } else {
       showDrawnNames.value = !showDrawnNames.value;
       showDrawnNameButton.value = 'Hide drawn names';
     }
-  }else{
+  } else {
     showDrawnNames.value = !showDrawnNames.value;
     showDrawnNameButton.value = 'Show drawn names'
   }
