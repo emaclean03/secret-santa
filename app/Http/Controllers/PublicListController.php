@@ -23,15 +23,6 @@ class PublicListController extends Controller
 
     public function update(Request $request, SecretList $secretList)
     {
-     switch ($request->field){
-         case 'full_name':
-             $secretList->participant()->where('id', $request->id)->update(['full_name'=>$request->value]);
-             break;
-         case 'email':
-             $secretList->participant()->where('id', $request->id)->update(['email'=>$request->value]);
-             break;
-     }
 
-        return Redirect::back()->banner('Successfully updated email');
     }
 }

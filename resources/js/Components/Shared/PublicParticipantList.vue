@@ -6,7 +6,7 @@
     <q-separator/>
     <q-table
         :rows="participants"
-        style="height: 400px"
+        style="height: 310px"
         :columns="columns"
         row-key="name"
         :filter="filter"
@@ -36,15 +36,7 @@
               <q-input v-model="scope.value" dense autofocus/>
             </q-popup-edit>
           </q-td>
-          <q-td key="Actions" :props="props">
-            <q-btn v-if="participants.length > 3" @click="handleDeleteParticipant(props.row)" color="blue-grey-9" size="xs">
-              <font-awesome-icon icon="fa-solid fa-x  "/>
-            </q-btn>
-          </q-td>
         </q-tr>
-      </template>
-      <template #bottom>
-            <q-btn class="mt-4" @click="handleAddParticipant" color="blue-grey-9">Add participant</q-btn>
       </template>
     </q-table>
   </q-card>
@@ -79,7 +71,6 @@ const columns = [
     sortable: true
   },
   {name: 'email', align: 'center', label: 'Email', field: 'email', sortable: true},
-  {name: 'Actions', align: 'right', label: 'Actions'},
 ]
 
 const handleSaveFullName = (value, participantId) => {
@@ -90,16 +81,4 @@ const handleSaveEmail = (value, participantId) => {
   Inertia.post(`/participants/${participantId}/update`, {field: 'email', value: value})
 }
 
-const handleDeleteParticipant = (participant) => {
-  Inertia.post(`/secretList/${props.list.id}/update`, {participantId: participant.id}, {
-    onBefore: () => confirm('Are you sure you wish to delete this participant?')
-  })
-}
-
-const handleAddParticipant = () => {
-  const full_name = prompt('What is the participant name?');
-  if(full_name) {
-    Inertia.post(`/participants/${props.list.id}/store`, {full_name})
-  }
-}
 </script>

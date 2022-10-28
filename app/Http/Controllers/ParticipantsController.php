@@ -6,6 +6,7 @@ use App\Http\Requests\StoreParticipantsRequest;
 use App\Http\Requests\UpdateParticipantsRequest;
 use App\Models\Participant;
 use App\Models\SecretList;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
@@ -52,9 +53,11 @@ class ParticipantsController extends Controller
      * @param  \App\Http\Requests\StoreParticipantsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreParticipantsRequest $request)
+    public function store(StoreParticipantsRequest $request, SecretList $secretList)
     {
-        //
+        $participant = Participant::make(['full_name'=>$request->full_name]);
+        $secretList->participant()->save($participant);
+        return Redirect::back()->banner('Successfully added ' . $request->full_name);
     }
 
     /**
@@ -86,9 +89,18 @@ class ParticipantsController extends Controller
      * @param  \App\Models\Participant  $participants
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateParticipantsRequest $request, Participant $participants)
+    public function update(UpdateParticipantsRequest $request, Participant $participant)
     {
-        //
+        switch ($request->field){
+            case 'full_name':
+                $participant->update(['full_name'=>$request->value]);
+                break;
+            case 'email':
+                $participant->update(['email'=>$request->value]);
+                break;
+        }
+        return Redirect::back()->banner('Successfully updated participant');
+
     }
 
     /**

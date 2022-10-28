@@ -39,12 +39,11 @@
           <q-card-section>
             <q-form
                 @submit="onSubmit"
-                @reset="onReset"
                 class="q-gutter-md"
             >
               <q-input
-                  v-for="participant in participantNames"
-                  clearable
+                  v-for="(participant, index) in participantNames"
+                  :key="participant.id"
                   filled
                   v-model="participant.name"
                   label="Participant Name *"
@@ -52,7 +51,14 @@
                   class="mt-8"
                   lazy-rules
                   :rules="[ val => val && val.length > 0 || 'Please type something']"
-              />
+              >
+                <template #append>
+                  <q-btn v-if="participantNames.length > 3" @click="deleteParticipant(index)" color="blue-grey-9" size="xs">
+                    <font-awesome-icon icon="fa-solid fa-x  "/>
+                  </q-btn>
+                </template>
+              </q-input>
+
               <div>
                 <q-btn label="Add participant" @click="addNewUser" class="mr-2 " color="blue-grey-9"/>
                 <br>
@@ -74,28 +80,39 @@ import {ref} from "vue";
 import {Inertia} from "@inertiajs/inertia";
 
 const participantNames = ref([
-  {name: ''},
-  {name: ''},
-  {name: ''}
+  { name: ''},
+  { name: ''},
+  { name: ''}
 ]);
 const secretListName = ref(null);
 const secretListBudget = ref(0);
 const secretListEventDate = ref(null);
 
 const addNewUser = () => {
-  participantNames.value.push({name: ''});
+  participantNames.value.push({ name: ''});
 }
 
 const onSubmit = () => {
-  Inertia.post('/secretList/store', {participantNames: participantNames.value, listName: secretListName.value, listBudget: secretListBudget.value, eventDate:secretListEventDate.value}, {
+  Inertia.post('/secretList/store', {
+    participantNames: participantNames.value,
+    listName: secretListName.value,
+    listBudget: secretListBudget.value,
+    eventDate: secretListEventDate.value
+  }, {
     onSuccess: (page) => {
       secretListName.value = '';
-      participantNames.value = [ {name: ''},
-        {name: ''},
-        {name: ''}];
+      participantNames.value = [
+        { name: ''},
+        { name: ''},
+        { name: ''}
+      ];
     },
 
   })
+}
+
+const deleteParticipant = (participant) => {
+  participantNames.value.splice(participant, 1) // remove it from array
 }
 
 </script>
