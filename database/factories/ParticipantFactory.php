@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Participant>
  */
-class ParticipantsFactory extends Factory
+class ParticipantFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,8 @@ class ParticipantsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'full_name'=>$this->faker->firstName,
+            'email' => $this->faker->email
         ];
     }
 }
