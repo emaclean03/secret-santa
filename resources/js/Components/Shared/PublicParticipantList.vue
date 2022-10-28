@@ -7,7 +7,6 @@
     <q-table
         :rows="participants"
         style="height: 600px"
-
         :columns="columns"
         row-key="name"
         :filter="filter"
