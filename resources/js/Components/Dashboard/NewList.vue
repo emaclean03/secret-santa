@@ -60,7 +60,7 @@
               </q-input>
 
               <div>
-                <q-btn label="Add participant" @click="addNewUser" class="mr-2 " color="blue-grey-9"/>
+                <q-btn label="Add participant" @click="addNewUser" class="mr-2 " color="blue-grey-8"/>
                 <br>
               </div>
               <q-separator class="bg-black "/>
@@ -79,8 +79,16 @@
 import {ref} from "vue";
 import {Inertia} from "@inertiajs/inertia";
 
+interface Props{
+  user: [
+      name: string,
+      email: string,
+  ]
+}
+
+const props = defineProps<Props>()
 const participantNames = ref([
-  { name: ''},
+  { name: props.user['name']},//This is the creator's name (logged in user)
   { name: ''},
   { name: ''}
 ]);

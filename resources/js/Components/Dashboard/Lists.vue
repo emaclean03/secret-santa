@@ -1,5 +1,5 @@
 <template>
-  <div class="h-4/5 w-5/6 lg:w-1/2 mx-auto overflow-y-auto overscroll-contain">
+  <div class="h-full mt-12 w-5/6 lg:w-1/2 mx-auto overflow-y-auto overscroll-contain">
     <div v-for="list in lists">
       <q-card class="m-2 w-full lg:w-full mx-auto">
         <q-card-section>
