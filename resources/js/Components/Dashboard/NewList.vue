@@ -60,7 +60,7 @@
               </q-input>
 
               <div>
-                <q-btn label="Add participant" @click="addNewUser" class="mr-2 " color="blue-grey-9"/>
+                <q-btn label="Add participant" @click="addNewUser" class="mr-2 " color="blue-grey-8"/>
                 <br>
               </div>
               <q-separator class="bg-black "/>

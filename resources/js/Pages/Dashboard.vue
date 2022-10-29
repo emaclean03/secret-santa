@@ -9,7 +9,7 @@
         <div class="lg:w-3/4 w-full text-center mt-2 mx-auto">
           <q-btn
               color="blue-grey-9"
-              class="text-center desktop-hide"
+              class="text-center"
               :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
               @click="expanded = !expanded"
               :label="!expanded ? 'Create a new mystery list' : 'Close'"
