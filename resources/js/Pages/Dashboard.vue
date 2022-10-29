@@ -3,8 +3,7 @@
     <div class="lg:flex lg:flex-row">
       <div class="lg:w-3/4 mx-auto border-1 border-gray-200 rounded-lg">
         <div class="text-center mt-4" v-if="lists.length === 0">
-          <h5><strong>You do not have any mystery lists!</strong>
-          <div><small>*Create a new Mystery list on the right</small></div></h5>
+          <h5><strong>You do not have any mystery lists!</strong></h5>
         </div>
         <div class="lg:w-3/4 w-full text-center mt-2 mx-auto">
           <q-btn
