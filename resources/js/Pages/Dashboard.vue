@@ -18,7 +18,7 @@
             <div v-show="expanded">
               <q-separator />
               <q-card-section class="text-subtitle2">
-                <NewList/>
+                <NewList :user="user"/>
               </q-card-section>
             </div>
           </q-slide-transition>
@@ -40,7 +40,11 @@ interface Props {
     list_name: string,
     name: string,
     email: string,
-  }]
+  }],
+  user:[
+      name: string,
+      email: string,
+  ]
 }
 
 const props = defineProps<Props>()

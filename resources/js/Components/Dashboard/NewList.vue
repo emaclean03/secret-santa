@@ -79,8 +79,16 @@
 import {ref} from "vue";
 import {Inertia} from "@inertiajs/inertia";
 
+interface Props{
+  user: [
+      name: string,
+      email: string,
+  ]
+}
+
+const props = defineProps<Props>()
 const participantNames = ref([
-  { name: ''},
+  { name: props.user['name']},//This is the creator's name (logged in user)
   { name: ''},
   { name: ''}
 ]);
