@@ -1,15 +1,29 @@
 <template>
   <AppLayout title="Dashboard">
-    <div class="md:flex md:flex-row">
-      <div class="w-3/4 mx-auto border-1 border-gray-200 rounded-lg">
+    <div class="lg:flex lg:flex-row">
+      <div class="lg:w-3/4 mx-auto border-1 border-gray-200 rounded-lg">
         <div class="text-center mt-4" v-if="lists.length === 0">
           <h5><strong>You do not have any mystery lists!</strong>
           <div><small>*Create a new Mystery list on the right</small></div></h5>
         </div>
+        <div class="lg:w-3/4 w-full text-center mt-2 mx-auto">
+          <q-btn
+              color="blue-grey-9"
+              class="text-center desktop-hide"
+              :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+              @click="expanded = !expanded"
+              :label="!expanded ? 'Create a new mystery list' : 'Close'"
+          />
+          <q-slide-transition>
+            <div v-show="expanded">
+              <q-separator />
+              <q-card-section class="text-subtitle2">
+                <NewList/>
+              </q-card-section>
+            </div>
+          </q-slide-transition>
+        </div>
         <List :lists="lists"/>
-      </div>
-      <div class="w-3/4 mx-auto border-l-2 border-gray-200">
-        <NewList/>
       </div>
     </div>
   </AppLayout>
@@ -19,6 +33,7 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import List from "../Components/Dashboard/Lists.vue";
 import NewList from "@/Components/Dashboard/NewList.vue";
+import {ref} from "vue";
 
 interface Props {
   lists: [{
@@ -29,5 +44,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+
+const expanded = ref(false);
 
 </script>
