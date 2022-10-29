@@ -108,7 +108,7 @@ const props = defineProps<Props>()
             </h3>
             <p class="text-gray-800 mb-8">
               This will allow you to retain all of your lists from previous events.
-              <small class="block mt-1">Note * Only the list creator will need to register an account. </small>
+              <small class="block mt-1 font-bold">* Only the list creator will need to register an account. </small>
             </p>
           </div>
         </div>
