@@ -10,6 +10,8 @@ const props = defineProps<Props>()
 </script>
 
 <template>
+  <meta name="Mystery Drawing" content="Create mystery drawing lists for participants">
+
   <Head title="Welcome"/>
 
   <div class="w-full mx-auto bg-gradient-to-r from-cyan-400 to-blue-300">
@@ -106,7 +108,7 @@ const props = defineProps<Props>()
             </h3>
             <p class="text-gray-800 mb-8">
               This will allow you to retain all of your lists from previous events.
-              <small class="block mt-1">Note * Only the list creator will need to register an account. </small>
+              <small class="block mt-1 font-bold">* Only the list creator will need to register an account. </small>
             </p>
           </div>
         </div>
