@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\NamesDrawn;
 use App\Mail\TestAmazonEmail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -28,14 +29,6 @@ class SendEmailJob implements ShouldQueue
     {
         $this->details = $details;
         $this->secretList = $secretList;
-        foreach ($this->details as $detail) {
-            try {
-                Mail::to($detail->email)->send(new TestAmazonEmail($detail->parent, $secretList));
-            } catch (\Exception $e) {
-                Log::error('Error sending email' . $e->getMessage());
-            }
-        }
-
 
     }
 
@@ -46,7 +39,12 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        //dd('hello');
-        //Mail::to('emaclean03@aol.com')->send(new TestAmazonEmail($this->details));
+        foreach ($this->details as $detail) {
+            try {
+                Mail::to($detail->email)->send(new NamesDrawn($detail->parent, $this->secretList));
+            } catch (\Exception $e) {
+                Log::error('Error sending email' . $e->getMessage());
+            }
+        }
     }
 }
