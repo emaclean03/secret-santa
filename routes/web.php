@@ -3,6 +3,7 @@
 use App\Http\Controllers\ParticipantsController;
 use App\Http\Controllers\PublicListController;
 use App\Http\Controllers\SecretListController;
+use App\Models\Participant;
 use App\Models\SecretList;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
@@ -66,14 +67,15 @@ Route::get('/list/{secretList}', [PublicListController::class, 'index'])->name('
 //Update a participant
 Route::post('/participants/{participant}/update', [ParticipantsController::class, 'update'])->name('public.participant.update');
 
-
-Route::get('/test', function(){
-
-    try {
-        dispatch(new App\Jobs\SendEmailJob('emaclean03@aol.com'));
-    dd('done');
-} catch (Exception $e) {
-        Log::info($e->getMessage());
-        dd($e->getMessage());
+//Unsubscribe from emails
+Route::get('/unsubscribe/{participant}', function (Request $request, Participant $participant) {
+    if (! $request->hasValidSignature()) {
+        abort(401);
     }
-});
+
+    $participant->email = null;
+    $participant->save();
+
+    echo 'We have removed your email from our email list and will no longer be participating in the Mystery Drawing.';
+
+})->name('public.unsubscribe');

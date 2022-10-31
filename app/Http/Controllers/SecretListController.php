@@ -149,11 +149,11 @@ class SecretListController extends Controller
             $person->save();
             $usedPeople[] = $randomPerson->id;
         }
-        $secretList->update(['has_been_drawn' => true]);
+      //  $secretList->update(['has_been_drawn' => true]);
 
         try {
             $participants = $secretList->participant()->with('parent')->get();
-            dispatch(new SendEmailJob($participants, $secretList));
+            SendEmailJob::dispatch($participants, $secretList);
         } catch (Exception $e) {
             Log::info($e->getMessage());
         }
