@@ -6,41 +6,39 @@
           <q-card-section>
             <div class="text-h6">Create New Mystery List</div>
           </q-card-section>
-          <q-card-section>
-            <q-input
-                filled
-                v-model="secretListName"
-                label="Name of list *"
-                clearable
-                lazy-rules
-                :rules="[ val => val && val.length > 0 || 'Please type something']"
-            />
-            <q-input
-                filled
-                clearable
-                v-model.number="secretListBudget"
-                label="$ Budget"
-                lazy-rules
-                type="number"
-                :rules="[ val => val && val.length > 0 || 'Please type something']"
-            />
-
-            <q-input
-                filled
-                v-model="secretListEventDate"
-                label="Event date"
-                lazy-rules
-                clearable
-                type="date"
-                :rules="[ val => val && val.length > 0 || 'Please type something']"
-            />
-          </q-card-section>
           <q-separator class="bg-black "/>
           <q-card-section>
             <q-form
-                @submit="onSubmit"
+                ref="myForm"
+                @submit.prevent="onSubmit"
                 class="q-gutter-md"
             >
+              <q-input
+                  filled
+                  v-model="secretListName"
+                  label="Name of list *"
+                  clearable
+                  :rules="[ val => val && val.length > 0 || 'Please type something']"
+              />
+              <q-input
+                  filled
+                  clearable
+                  v-model.number="secretListBudget"
+                  label="$ Budget"
+                  type="number"
+                  :rules="[ val => val && val > 0 || 'Please add a budget amount']"
+              />
+
+              <q-input
+                  filled
+                  v-model="secretListEventDate"
+                  label="Event date"
+                  lazy-rules
+                  clearable
+                  type="date"
+                  :rules="[ val => val && val.length > 0 || 'Please type something']"
+              />
+              <q-separator class="bg-black "/>
               <q-input
                   v-for="(participant, index) in participantNames"
                   :key="participant.id"
@@ -49,7 +47,6 @@
                   label="Participant Name *"
                   hint="First and Last Name"
                   class="mt-8"
-                  lazy-rules
                   :rules="[ val => val && val.length > 0 || 'Please type something']"
               >
                 <template #append>
@@ -86,21 +83,22 @@ interface Props{
   ]
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
+const myForm = ref(null)
 const participantNames = ref([
   { name: props.user['name']},//This is the creator's name (logged in user)
   { name: ''},
   { name: ''}
 ]);
 const secretListName = ref(null);
-const secretListBudget = ref(0);
+const secretListBudget = ref(null);
 const secretListEventDate = ref(null);
 
 const addNewUser = () => {
   participantNames.value.push({ name: ''});
 }
 
-const onSubmit = () => {
+const onSubmit = (event) => {
   Inertia.post('/secretList/store', {
     participantNames: participantNames.value,
     listName: secretListName.value,
@@ -108,12 +106,16 @@ const onSubmit = () => {
     eventDate: secretListEventDate.value
   }, {
     onSuccess: (page) => {
-      secretListName.value = '';
+      secretListName.value = null;
+      secretListEventDate.value = null;
+      secretListBudget.value = null;
       participantNames.value = [
-        { name: ''},
-        { name: ''},
-        { name: ''}
+        { name: props.user['name']},
+        { name: null},
+        { name: null}
       ];
+
+      myForm.value.reset();
     },
 
   })
