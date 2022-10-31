@@ -149,7 +149,7 @@ class SecretListController extends Controller
             $person->save();
             $usedPeople[] = $randomPerson->id;
         }
-      //  $secretList->update(['has_been_drawn' => true]);
+        $secretList->update(['has_been_drawn' => true]);
 
         try {
             $participants = $secretList->participant()->with('parent')->get();
