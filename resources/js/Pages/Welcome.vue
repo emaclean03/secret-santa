@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import {Head, Link} from '@inertiajs/inertia-vue3';
+import xmasGift from '../../images/ChistmasGift.png'
+import turkey from '../../images/turkey.jpg';
 
 interface Props {
   canLogin: Boolean,
@@ -52,7 +54,7 @@ const props = defineProps<Props>()
             A free, simple way to create secret lists with your friends!
           </h1>
           <p class="leading-normal text-2xl mb-8 text-blue-600">
-            Mystery Drawing® is a free secret list creator for Christmas and other festivities!</p>
+            Mystery Drawing® is a free secret list creator for Christmas and any other festivities!</p>
         </div>
         <!--Right Col-->
       </div>
@@ -113,7 +115,8 @@ const props = defineProps<Props>()
           </div>
         </div>
         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
-          <div class="w-full sm:w-1/2 lg:p-6 mt-6">
+          <div class="sm:w-1/3">
+            <img class="w-7/12" :src="xmasGift" alt="Christmas Gift"/>
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
@@ -141,6 +144,9 @@ const props = defineProps<Props>()
               After starting the drawing, each participant will be assigned another participant by random.
               Each participant will receive an email with who their participant is, along with the event information.
             </p>
+            <div class="sm:w-1/3 mx-auto">
+              <img class="w-8/12" :src="turkey" alt="Thanksgiving Turkey"/>
+            </div>
           </div>
         </div>
       </div>
