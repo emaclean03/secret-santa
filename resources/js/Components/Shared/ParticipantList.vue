@@ -1,7 +1,10 @@
 <template>
   <q-card class="m-2">
     <q-card-section>
-      <div class="text-h6 text-center">Participants</div>
+      <div class="text-h6 text-center">Participants<br>
+        <font-awesome-icon class="w-3" icon="fa-solid fa-info-circle"/>
+        <small>You may update any participant Name or Email in this table.</small>
+      </div>
     </q-card-section>
     <q-separator/>
     <q-table
