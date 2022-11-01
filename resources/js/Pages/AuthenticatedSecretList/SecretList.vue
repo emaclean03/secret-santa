@@ -4,11 +4,15 @@
       <div class="mx-auto lg:w-3/4 w-full text-center">
         <q-card>
           <q-card-section>
+            <div v-if="!list.has_been_drawn">
+            <h6 v-if="readyToDraw === participants.length" class="block text-green-700 mb-2 border-b border-gray-200 font-bold">
+              {{ list.list_name }} list is ready for it's drawing!</h6>
+            <p v-else class="block text-green-700 mb-2 border-b border-gray-200 font-bold">Not all participants have added their email!</p>
+            </div>
             <ListInformation :list="list"/>
             <div class="flex flex-row justify-center">
               <div class="m-2" v-if="!list.has_been_drawn">
-                <q-btn color="blue-grey-9" @click="handleStartDraw(list.id)">Start the draw
-                </q-btn>
+                <q-btn color="blue-grey-9" @click="handleStartDraw(list.id)">Start the draw</q-btn>
               </div>
               <div class="m-2" v-else>
                 <q-btn color="primary" @click="handleShowDrawnNames">{{ showDrawnNameButton }}</q-btn>
@@ -67,7 +71,8 @@ interface Props {
     list_budget: number,
     name: string,
     has_been_drawn: boolean,
-  }
+  },
+  readyToDraw: number,
 }
 
 const props = defineProps<Props>()
@@ -75,6 +80,7 @@ const props = defineProps<Props>()
 const showDrawnNames = ref(false);
 const showDrawnNameButton = ref('Show drawn names');
 const copiedToClipboard = ref(false);
+
 
 const copyToClipBoard = () => {
   navigator.clipboard.writeText(props.signedUrl);

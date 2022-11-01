@@ -46,7 +46,7 @@
           </q-td>
         </q-tr>
       </template>
-      <template #bottom>
+      <template v-if="!list.has_been_drawn" #bottom>
             <q-btn class="mt-4" @click="handleAddParticipant" color="blue-grey-9">Add participant</q-btn>
       </template>
     </q-table>
