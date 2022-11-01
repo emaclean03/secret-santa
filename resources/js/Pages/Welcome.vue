@@ -12,10 +12,9 @@ const props = defineProps<Props>()
 </script>
 
 <template>
+  <meta name="Mystery Drawing" content="Create mystery drawing lists for participants">
 
-  <Head title="Welcome">
-    <meta name="Mystery Drawing" content="Create mystery drawing lists for participants">
-  </Head>
+  <Head title="Welcome"/>
 
   <div class="w-full mx-auto bg-gradient-to-r from-cyan-400 to-blue-300">
     <nav class="mx-auto w-full z-30">
