@@ -80,6 +80,7 @@ class SecretListController extends Controller
         return Inertia::render('AuthenticatedSecretList/SecretList', [
             'list' => $secretList,
             'participants' => $secretList->participant()->with('parent')->get(),
+            'readyToDraw' => $secretList->participant()->count('email'),
             'signedUrl' => URL::signedRoute('public.index', $secretList->id)
         ]);
     }
