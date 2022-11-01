@@ -107,12 +107,14 @@ const props = defineProps<Props>()
               </div>
             </h3>
             <p class="text-gray-800 mb-8">
-              This will allow you to retain all of your lists from previous events.
+              This will allow you to manage all of your lists for previous and future events.
               <small class="block mt-1 font-bold">* Only the list creator will need to register an account. </small>
             </p>
           </div>
         </div>
         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
+          <div class="w-full sm:w-1/2 lg:p-6 mt-6">
+          </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
@@ -129,10 +131,7 @@ const props = defineProps<Props>()
         </div>
       </div>
       <div class="container max-w-5xl mx-auto m-8">
-        <div class="w-full mb-4">
-          <div class="h-1 mx-auto gradient w-64 opacity-25 rounded-t"></div>
-        </div>
-        <div class="w-full sm:w-1/2 p-6">
+        <div class="w-full lg:w-1/2 p-6">
           <div class="align-middle">
             <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
               <font-awesome-icon icon="fa-solid fa-3"/>
