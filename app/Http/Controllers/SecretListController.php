@@ -51,7 +51,7 @@ class SecretListController extends Controller
             'email' => Auth::user()->email,
             'user_id' => Auth::user()->id,
             'list_budget' => $request->listBudget,
-            'event_date' => $request->eventDate,
+            'event_date' =>  date('Y-m-d', strtotime($request->eventDate))
         ]);
 
 
@@ -80,6 +80,7 @@ class SecretListController extends Controller
         return Inertia::render('AuthenticatedSecretList/SecretList', [
             'list' => $secretList,
             'participants' => $secretList->participant()->with('parent')->get(),
+            'readyToDraw' => $secretList->participant()->count('email'),
             'signedUrl' => URL::signedRoute('public.index', $secretList->id)
         ]);
     }
