@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {Head, Link} from '@inertiajs/inertia-vue3';
-import xmasGift from '../../images/ChistmasGift.png'
-import turkey from '../../images/turkey.jpg';
+import xmasGift from '../../images/ChistmasGift.avif'
+import turkey from '../../images/turkey.avif';
 
 interface Props {
   canLogin: Boolean,
