@@ -114,8 +114,6 @@ const props = defineProps<Props>()
         </div>
         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
           <div class="w-full sm:w-1/2 p-6 mt-6">
-          </div>
-          <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
                 <font-awesome-icon icon="fa-solid fa-2"/>
@@ -134,8 +132,8 @@ const props = defineProps<Props>()
         <div class="w-full mb-4">
           <div class="h-1 mx-auto gradient w-64 opacity-25 rounded-t"></div>
         </div>
-        <div class="flex flex-wrap">
-          <div class="w-5/6 sm:w-1/2">
+        <div class="w-full sm:w-1/2 p-6">
+          <div class="align-middle">
             <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
               <font-awesome-icon icon="fa-solid fa-3"/>
               <div class="inline ml-2">. Start the drawing!</div>
