@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="ts" xmlns:Cache-Control="http://www.w3.org/1999/xhtml">
 import {Head, Link} from '@inertiajs/inertia-vue3';
 import xmasGift from '../../images/ChistmasGift.avif'
 import turkey from '../../images/turkey.avif';
@@ -12,9 +12,10 @@ const props = defineProps<Props>()
 </script>
 
 <template>
-  <meta name="Mystery Drawing" content="Create mystery drawing lists for participants">
 
-  <Head title="Welcome"/>
+  <Head title="Welcome">
+    <meta name="Mystery Drawing" content="Create mystery drawing lists for participants">
+  </Head>
 
   <div class="w-full mx-auto bg-gradient-to-r from-cyan-400 to-blue-300">
     <nav class="mx-auto w-full z-30">
