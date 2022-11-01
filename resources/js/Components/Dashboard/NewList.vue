@@ -80,8 +80,10 @@ interface Props{
   user: [
       name: string,
       email: string,
-  ]
+  ],
 }
+
+const emit = defineEmits(['created']);
 
 const props = defineProps<Props>();
 const myForm = ref(null)
@@ -98,6 +100,7 @@ const addNewUser = () => {
   participantNames.value.push({ name: ''});
 }
 
+
 const onSubmit = (event) => {
   Inertia.post('/secretList/store', {
     participantNames: participantNames.value,
@@ -109,6 +112,8 @@ const onSubmit = (event) => {
       secretListName.value = null;
       secretListEventDate.value = null;
       secretListBudget.value = null;
+      //Close up the form after successfully created new list
+      emit('created');
       participantNames.value = [
         { name: props.user['name']},
         { name: null},

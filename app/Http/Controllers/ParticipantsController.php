@@ -91,12 +91,16 @@ class ParticipantsController extends Controller
      */
     public function update(UpdateParticipantsRequest $request, Participant $participant)
     {
+      //  dd($request->all());
         switch ($request->field){
             case 'full_name':
                 $participant->update(['full_name'=>$request->value]);
                 break;
             case 'email':
                 $participant->update(['email'=>$request->value]);
+                break;
+            case 'public_update':
+                $participant->update($request->except('field'));
                 break;
         }
         return Redirect::back()->banner('Successfully updated participant');
