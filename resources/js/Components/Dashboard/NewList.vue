@@ -29,11 +29,11 @@
                   :rules="[ val => val && val > 0 || 'Please add a budget amount']"
               />
 
-              <q-input label="Event date" filled v-model="secretListEventDate" :rules="['date']">
+              <q-input label="Event date" filled v-model="secretListEventDate">
                 <template v-slot:prepend>
                   <q-icon name="event" class="cursor-pointer">
                     <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-                      <q-date mask="MM/DD/YYYY" v-model="secretListEventDate">
+                      <q-date mask="MM-DD-YYYY" v-model="secretListEventDate">
                         <div class="row items-center justify-end">
                           <q-btn v-close-popup label="Close" color="primary" flat />
                         </div>
