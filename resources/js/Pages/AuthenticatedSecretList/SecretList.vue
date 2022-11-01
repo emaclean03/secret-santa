@@ -7,7 +7,7 @@
             <ListInformation :list="list"/>
             <div class="flex flex-row justify-center">
               <div class="m-2" v-if="!list.has_been_drawn">
-                <q-btn color="primary" @click="handleStartDraw(list.id)">Start the draw
+                <q-btn color="blue-grey-9" @click="handleStartDraw(list.id)">Start the draw
                 </q-btn>
               </div>
               <div class="m-2" v-else>
@@ -20,9 +20,15 @@
           </q-card-section>
           <q-card-section>
             <div class="text-h6">Share this URL
-              <button class="inline" @click="copyToClipBoard((e)=>e.target.value)">
+              <q-btn dense size="md" class="inline mb-1" flat @click="copyToClipBoard((e)=>e.target.value)">
                 <font-awesome-icon icon="fa-solid fa-copy"/>
-              </button>
+                <q-popup-proxy>
+                  <q-banner v-show="copiedToClipboard">
+                    Copied!
+                  </q-banner>
+                </q-popup-proxy>
+              </q-btn>
+
             </div>
             <q-input input-class="text-center" v-model="signedUrl"/>
           </q-card-section>
@@ -68,9 +74,15 @@ const props = defineProps<Props>()
 
 const showDrawnNames = ref(false);
 const showDrawnNameButton = ref('Show drawn names');
+const copiedToClipboard = ref(false);
 
 const copyToClipBoard = () => {
   navigator.clipboard.writeText(props.signedUrl);
+  copiedToClipboard.value = true;
+
+  const timeOut = setTimeout(() => {
+    copiedToClipboard.value = false;
+  }, 1000);
 }
 
 const handleShowDrawnNames = () => {

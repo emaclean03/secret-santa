@@ -1,23 +1,40 @@
 <template>
-    <div class="flex w-full h-screen text-center bg-gradient-to-r from-cyan-400 to-blue-300 ">
-      <div class="lg:w-3/4 w-full mx-auto">
-        <q-card class="h-max m-2 w-full mt-4 lg:w-3/4 mx-auto">
-          <q-separator/>
-          <font-awesome-icon icon="fa-solid fa-info-circle" /><div class="text-center inline ml-1 font-bold">Please add your email if it has not yet been added by clicking on the email row of your name.</div>
-          <div>
-            <small>If you would like to create a wish-list, please register <a href="/register" class="underline text-blue-600 hover:text-blue-800">Here!</a> *Coming soon</small>
-          </div>
-          <q-separator/>
-          <q-card-section class="w-full mx-auto">
-            <PublicParticipantList :list="list" :participants="participants"/>
-          </q-card-section>
-        </q-card>
-      </div>
+  <Banner/>
+  <div class="flex w-full h-screen text-center bg-gradient-to-r from-indigo-200 to-transparent">
+    <div class="lg:w-3/4 w-full mx-auto mt-1">
+      <ListInformation :list="list"/>
+      <q-card class="h-max m-2 w-full mt-4 lg:w-3/4 mx-auto">
+
+        <font-awesome-icon icon="fa-solid fa-info-circle"/>
+        <div class="text-center inline ml-1 font-bold">
+          Please choose your name in the dropdown. You can then update your email
+        </div>
+
+        <q-separator/>
+        <q-card-section class="lg:w-1/2 mx-auto bg-">
+          <q-select
+              option-label="full_name"
+              option-value="id"
+              filled
+              v-model="selectedParticipant"
+              :options="participants"
+              label="Your name"/>
+        </q-card-section>
+        <q-separator class="bg-black"/>
+        <q-card-section>
+          <UpdateParticipantInfo v-if="selectedParticipant" :participant="selectedParticipant"/>
+        </q-card-section>
+      </q-card>
     </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-  import PublicParticipantList from "@/Components/Shared/PublicParticipantList.vue";
+import PublicParticipantList from "@/Components/Shared/PublicParticipantList.vue";
+import {ref} from "vue";
+import UpdateParticipantInfo from "@/Components/Shared/UpdateParticipantInfo.vue";
+import Banner from '@/Components/Banner.vue';
+import ListInformation from "@/Components/Shared/ListInformation.vue";
 
 interface Props {
   list: {
@@ -35,5 +52,6 @@ interface Props {
 
 const props = defineProps<Props>();
 
+const selectedParticipant = ref(null);
 
 </script>

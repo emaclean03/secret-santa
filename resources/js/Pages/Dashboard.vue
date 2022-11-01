@@ -17,7 +17,7 @@
             <div v-show="expanded">
               <q-separator />
               <q-card-section class="text-subtitle2">
-                <NewList :user="user"/>
+                <NewList @created="expanded = !expanded" :user="user"/>
               </q-card-section>
             </div>
           </q-slide-transition>
@@ -47,7 +47,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-
 const expanded = ref(false);
+
 
 </script>
