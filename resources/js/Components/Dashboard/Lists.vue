@@ -54,7 +54,7 @@ const handleDeleteList = (listId: number) => {
 }
 
 const handleViewList = (listId: number) => {
-  Inertia.visit(`/generateList/${listId}`, {},);
+  Inertia.visit(`/secretList/${listId}/show`, {},);
 }
 </script>
 
