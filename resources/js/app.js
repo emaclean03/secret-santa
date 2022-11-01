@@ -14,7 +14,8 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import {faCheck, faX, fa1, fa2, fa3, faCopy, faInfoCircle} from "@fortawesome/free-solid-svg-icons";
-
+import {createHead} from "@vueuse/head";
+const head = createHead();
 
 library.add(faCheck)
 library.add(faX)
@@ -32,6 +33,7 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue, Ziggy)
             .use(Quasar)
+            .use(head)
             .component('font-awesome-icon', FontAwesomeIcon)
             .mount(el);
     },

@@ -2,18 +2,26 @@
 import {Head, Link} from '@inertiajs/inertia-vue3';
 import xmasGift from '../../images/ChistmasGift.avif'
 import turkey from '../../images/turkey.avif';
+import {useHead} from "@vueuse/head";
 
 interface Props {
   canLogin: Boolean,
   canRegister: Boolean,
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
+
+useHead({
+  title: 'Mystery Drawing',
+  meta:[
+    {
+      name: 'Mystery Drawing', content:() => 'Create mystery drawing lists for your friends!'
+    }
+  ]
+})
 </script>
 
 <template>
-  <meta name="Mystery Drawing" content="Create mystery drawing lists for participants">
-
   <Head title="Welcome"/>
 
   <div class="w-full mx-auto bg-gradient-to-r from-cyan-400 to-blue-300">
