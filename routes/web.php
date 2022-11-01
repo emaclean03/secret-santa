@@ -44,7 +44,7 @@ Route::middleware([
     })->name('dashboard');
 
     Route::post('/secretList/store', [SecretListController::class, 'store'])->name('List.store');
-    Route::post('/secretList/{secretList}/show', [SecretListController::class, 'store'])->name('List.show');
+    Route::get('/secretList/{secretList}/show', [SecretListController::class, 'show'])->name('List.show');
     Route::post('/secretList/{secretList}/delete', [SecretListController::class, 'destroy'])->name('List.destroy');
     Route::post('/secretList/{secretList}/update', [SecretListController::class, 'update'])->name('List.update');
 
@@ -54,8 +54,6 @@ Route::middleware([
     //Drawing
     Route::post('/secretList/{secretList}/draw', [SecretListController::class, 'drawParticipants'])->name('List.drawParticipants');
 
-    //Generates the signed URL
-    Route::get('/generateList/{secretList}', [SecretListController::class,'show'])->name('List.generateUrl');
 });
 
 
