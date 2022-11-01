@@ -7,7 +7,7 @@
             <ListInformation :list="list"/>
             <div class="flex flex-row justify-center">
               <div class="m-2" v-if="!list.has_been_drawn">
-                <q-btn color="primary" @click="handleStartDraw(list.id)">Start the draw
+                <q-btn color="blue-grey-9" @click="handleStartDraw(list.id)">Start the draw
                 </q-btn>
               </div>
               <div class="m-2" v-else>
