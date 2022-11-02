@@ -23,6 +23,8 @@
         <q-separator class="bg-black"/>
         <q-card-section>
           <UpdateParticipantInfo v-if="selectedParticipant" :participant="selectedParticipant"/>
+          <div v-if="errors.email">{{ errors.email }}</div>
+          <div v-if="errors.fullName">{{ errors.email }}</div>
         </q-card-section>
       </q-card>
     </div>
@@ -47,7 +49,10 @@ interface Props {
     id: number,
     full_name: string,
     email: string,
-  }]
+  }],
+  errors: {
+
+  }
 }
 
 const props = defineProps<Props>();

@@ -20,12 +20,10 @@
           lazy-rules
           :rules="[ val => val && val.length > 0 || 'Please add an Email']"
       />
-
       <div>
         <q-btn label="Submit" type="submit" color="primary"/>
       </div>
     </q-form>
-
   </div>
 </template>
 
@@ -37,13 +35,19 @@ interface Props{
     full_name: string,
     id: number,
     email: string,
+  },
+  errors: {
+
   }
 }
 
+
 const props = defineProps<Props>()
 
+
+
 const handleSaveInfo = (value) => {
-  Inertia.post(`/participants/${props.participant.id}/update`, {field:'public_update', full_name: props.participant.full_name, email:props.participant.email})
+  Inertia.post(`/participants/${props.participant.id}/updatePublic`, {fullName: props.participant.full_name, email:props.participant.email})
 }
 
 </script>
