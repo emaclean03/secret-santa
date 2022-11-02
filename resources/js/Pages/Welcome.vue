@@ -160,24 +160,24 @@ useHead({
       </div>
     </section>
     <!--Footer-->
-<!--    <footer class="bg-white">
+    <footer class="bg-white">
       <div class="container mx-auto px-8">
         <div class="w-full flex flex-col md:flex-row py-6">
           <div class="flex-1">
-            <p class="uppercase text-gray-500 md:mb-6">Links</p>
+            <p class="uppercase text-gray-500 md:mb-6">Support</p>
             <ul class="list-reset mb-6">
-              <li class="mt-2 mr-2 md:block md:mr-0">
+<!--              <li class="mt-2 mr-2 md:block md:mr-0">
                 <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">FAQ</a>
               </li>
               <li class="mt-2  mr-2 md:block md:mr-0">
                 <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Help</a>
-              </li>
-              <li class="mt-2  mr-2 md:block md:mr-0">
-                <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Support</a>
+              </li>-->
+              <li class="md:block md:mr-0">
+                <a href="mailto:hello@mysterydrawing.com" class="no-underline hover:underline text-gray-800">hello@mysterydrawing.com</a>
               </li>
             </ul>
           </div>
-          <div class="flex-1">
+<!--          <div class="flex-1">
             <p class="uppercase text-gray-500 md:mb-6">Legal</p>
             <ul class="list-reset mb-6">
               <li class="mt-2 mr-2 md:block md:mr-0">
@@ -215,9 +215,9 @@ useHead({
                 <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Contact</a>
               </li>
             </ul>
-          </div>
+          </div>-->
         </div>
       </div>
-    </footer>-->
+    </footer>
   </div>
 </template>
