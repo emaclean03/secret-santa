@@ -1,18 +1,20 @@
 <template>
   <q-card class="m-2">
     <q-card-section>
-      <div class="text-h6 text-center">Participants<br>
+      <div class="text-h6 text-center"><p class="-mb-1 underline font-bold">Participants</p>
         <font-awesome-icon class="w-3" icon="fa-solid fa-info-circle"/>
-        <small>You may update any participant Name or Email in this table.</small>
+        <small>You may update any participant Name or Email in this table by clicking on the column</small>
       </div>
     </q-card-section>
     <q-separator/>
     <q-table
+        class="participants-list"
         :rows="participants"
-        style="height: 400px"
         :columns="columns"
         row-key="name"
+        separator="vertical"
         :filter="filter"
+        :virtual-scroll-sticky-size-start="12"
         virtual-scroll
         :rows-per-page-options="[0]"
     >
@@ -46,11 +48,12 @@
           </q-td>
         </q-tr>
       </template>
-      <template v-if="!list.has_been_drawn" #bottom>
-            <q-btn class="mt-4" @click="handleAddParticipant" color="blue-grey-9">Add participant</q-btn>
+      <template v-if="!list.has_been_drawn" #top-left>
+            <q-btn class="mb-3 lg:mb-0" @click="handleAddParticipant" color="blue-grey-9">Add participant</q-btn>
       </template>
     </q-table>
   </q-card>
+
 </template>
 
 <script lang="ts" setup>
@@ -106,3 +109,26 @@ const handleAddParticipant = () => {
   }
 }
 </script>
+
+<style lang="sass">
+.participants-list
+  /* height or max-height is important */
+  height: 310px
+
+  .q-table__top,
+  .q-table__bottom,
+  thead tr:first-child th
+    /* bg color is important for th; just specify one */
+    background-color: white
+
+  thead tr th
+    position: sticky
+    z-index: 1
+  thead tr:first-child th
+    top: 0
+
+  /* this is when the loading indicator appears */
+  &.q-table--loading thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+</style>
