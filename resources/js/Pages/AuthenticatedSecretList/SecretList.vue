@@ -20,19 +20,6 @@
               <div class="m-2">
                 <q-btn color="red-5" @click="deleteList(list.id)">Delete this list</q-btn>
               </div>
-              <div class="m-2">
-                <q-btn  color="primary">
-                  <q-popup-proxy @before-show="updateProxy" cover transition-show="scale" transition-hide="scale">
-                    <q-date v-model="proxyDate">
-                      <div class="row items-center justify-end q-gutter-sm">
-                        <q-btn label="Cancel" color="primary" flat v-close-popup />
-                        <q-btn label="OK" color="primary" flat @click="save" v-close-popup />
-                      </div>
-                    </q-date>
-                  </q-popup-proxy>
-                  Edit this list
-                </q-btn>
-              </div>
             </div>
           </q-card-section>
           <q-card-section>
