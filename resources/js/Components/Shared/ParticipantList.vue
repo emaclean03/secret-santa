@@ -36,9 +36,9 @@
           </q-td>
           <q-td key="email" :props="props">
             {{ props.row.email }}
-            <q-popup-edit v-model="props.row.email" @save="(val) => handleSaveEmail(val, props.row.id)"
+            <q-popup-edit v-model="props.row.email"  @save="(val) => handleSaveEmail(val, props.row.id)"
                           title="Update email" buttons v-slot="scope">
-              <q-input v-model="scope.value" dense autofocus/>
+              <q-input v-model="scope.value" :rules="[ (val, rules) => rules.email(val) || 'Please enter a valid email address' ]" dense autofocus/>
             </q-popup-edit>
           </q-td>
           <q-td key="Actions" :props="props">
@@ -89,11 +89,11 @@ const columns = [
 ]
 
 const handleSaveFullName = (value, participantId) => {
-  Inertia.post(`/participants/${participantId}/update`, {field:'full_name', value: value})
+  Inertia.post(`/participants/${participantId}/updateFullName`, { fullName: value})
 }
 
 const handleSaveEmail = (value, participantId) => {
-  Inertia.post(`/participants/${participantId}/update`, {field: 'email', value: value})
+  Inertia.post(`/participants/${participantId}/updateEmail`, { email: value})
 }
 
 const handleDeleteParticipant = (participant) => {

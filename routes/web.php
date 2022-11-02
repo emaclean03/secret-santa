@@ -53,6 +53,10 @@ Route::middleware([
     //Drawing
     Route::post('/secretList/{secretList}/draw', [SecretListController::class, 'drawParticipants'])->name('List.drawParticipants');
 
+
+    //Update a participant
+    Route::post('/participants/{participant}/updateFullName', [ParticipantsController::class, 'updateFullName'])->name('Participant.updateFullName');
+    Route::post('/participants/{participant}/updateEmail', [ParticipantsController::class, 'updateEmail'])->name('Participant.updateEmail');
 });
 
 
@@ -61,8 +65,7 @@ Route::middleware([
 //get's the signed URL and returns the public facing index
 Route::get('/list/{secretList}', [PublicListController::class, 'index'])->name('public.index');
 
-//Update a participant
-Route::post('/participants/{participant}/update', [ParticipantsController::class, 'update'])->name('public.participant.update');
+Route::post('/participants/{participant}/updatePublic', [ParticipantsController::class, 'updatePublic'])->name('public.participant.updateEmail');
 
 //Unsubscribe from emails
 Route::get('/unsubscribe/{participant}', function (Request $request, Participant $participant) {
