@@ -38,8 +38,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard', [
-            'lists'=> Auth::user()->SecretList()->get(),
-            'user' => Auth::user(),
+            'lists'=> SecretList::all(),
         ]);
     })->name('dashboard');
 
