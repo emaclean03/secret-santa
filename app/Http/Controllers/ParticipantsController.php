@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreParticipantsRequest;
-use App\Http\Requests\UpdateParticipantsRequest;
+use App\Http\Requests\UpdateParticipantsEmailRequest;
+use App\Http\Requests\UpdateParticipantsFullNameRequest;
 use App\Models\Participant;
 use App\Models\SecretList;
 use Illuminate\Support\Facades\Redirect;
@@ -85,26 +86,26 @@ class ParticipantsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateParticipantsRequest  $request
+     * @param  \App\Http\Requests\UpdateParticipantsFullNameRequest  $request
      * @param  \App\Models\Participant  $participants
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateParticipantsRequest $request, Participant $participant)
+    public function updateFullName(UpdateParticipantsFullNameRequest $request, Participant $participant)
     {
-      //  dd($request->all());
-        switch ($request->field){
-            case 'full_name':
-                $participant->update(['full_name'=>$request->value]);
-                break;
-            case 'email':
-                $participant->update(['email'=>$request->value]);
-                break;
-            case 'public_update':
-                $participant->update($request->except('field'));
-                break;
-        }
+        $participant->update(['full_name'=>$request->fullName]);
         return Redirect::back()->banner('Successfully updated participant');
-
+    }
+/**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateParticipantsEmailRequest  $request
+     * @param  \App\Models\Participant  $participants
+     * @return \Illuminate\Http\Response
+     */
+    public function updateEmail(UpdateParticipantsEmailRequest $request, Participant $participant)
+    {
+        $participant->update(['email'=>$request->email]);
+        return Redirect::back()->banner('Successfully updated participant');
     }
 
     /**

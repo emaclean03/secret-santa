@@ -62,7 +62,8 @@ Route::middleware([
 Route::get('/list/{secretList}', [PublicListController::class, 'index'])->name('public.index');
 
 //Update a participant
-Route::post('/participants/{participant}/update', [ParticipantsController::class, 'update'])->name('public.participant.update');
+Route::post('/participants/{participant}/updateFullName', [ParticipantsController::class, 'updateFullName'])->name('public.participant.updateFullName');
+Route::post('/participants/{participant}/updateEmail', [ParticipantsController::class, 'updateEmail'])->name('public.participant.updateEmail');
 
 //Unsubscribe from emails
 Route::get('/unsubscribe/{participant}', function (Request $request, Participant $participant) {
