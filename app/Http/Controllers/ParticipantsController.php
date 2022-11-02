@@ -93,6 +93,7 @@ class ParticipantsController extends Controller
      */
     public function updateFullName(UpdateParticipantsFullNameRequest $request, Participant $participant)
     {
+        //
         $participant->update(['full_name'=>$request->fullName]);
         return Redirect::back()->banner('Successfully updated participant');
     }
