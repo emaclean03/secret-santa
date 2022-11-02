@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateSecretListRequest;
 use App\Jobs\SendEmailJob;
 use App\Models\Participant;
 use App\Models\SecretList;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -44,14 +45,13 @@ class SecretListController extends Controller
      */
     public function store(StoreSecretListRequest $request)
     {
-
         $list = SecretList::create([
             'list_name' => $request->listName,
             'name' => Auth::user()->name,
             'email' => Auth::user()->email,
             'user_id' => Auth::user()->id,
             'list_budget' => $request->listBudget,
-            'event_date' =>  date('Y-m-d', strtotime($request->eventDate))
+            'event_date' =>  Carbon::parse($request->eventDate)->format('Y-m-d')
         ]);
 
 
