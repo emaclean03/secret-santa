@@ -5,9 +5,11 @@
         <q-card>
           <q-card-section>
             <div v-if="!list.has_been_drawn">
-            <h6 v-if="readyToDraw === participants.length" class="block text-green-700 mb-2 border-b border-gray-200 font-bold">
-              {{ list.list_name }} list is ready for it's drawing!</h6>
-            <p v-else class="block text-green-700 mb-2 border-b border-gray-200 font-bold">Not all participants have added their email!</p>
+              <h6 v-if="readyToDraw === participants.length"
+                  class="block text-green-700 mb-2 border-b border-gray-200 font-bold">
+                {{ list.list_name }} list is ready for it's drawing!</h6>
+              <p v-else class="block text-green-700 mb-2 border-b border-gray-200 font-bold">Not all participants have
+                added their email!</p>
             </div>
             <ListInformation :list="list"/>
             <div class="flex flex-row justify-center">
@@ -73,6 +75,7 @@ interface Props {
     has_been_drawn: boolean,
   },
   readyToDraw: number,
+  errors: {}
 }
 
 const props = defineProps<Props>()
