@@ -77,6 +77,7 @@ class SecretListController extends Controller
      */
     public function show(SecretList $secretList)
     {
+
         return Inertia::render('AuthenticatedSecretList/SecretList', [
             'list' => $secretList,
             'participants' => $secretList->participant()->with('parent')->get(),
