@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateSecretListRequest;
 use App\Jobs\SendEmailJob;
 use App\Models\Participant;
 use App\Models\SecretList;
+use App\Models\WishList;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -77,10 +78,9 @@ class SecretListController extends Controller
      */
     public function show(SecretList $secretList)
     {
-
         return Inertia::render('AuthenticatedSecretList/SecretList', [
             'list' => $secretList,
-            'participants' => $secretList->participant()->with('parent')->get(),
+            'participants' => $secretList->participant()->with(['parent'])->get(),
             'readyToDraw' => $secretList->participant()->count('email'),
             'signedUrl' => URL::signedRoute('public.index', $secretList->id)
         ]);
@@ -154,7 +154,7 @@ class SecretListController extends Controller
         $secretList->update(['has_been_drawn' => true]);
 
         try {
-            $participants = $secretList->participant()->with('parent')->get();
+            $participants = $secretList->participant()->with(['parent', 'wishList'])->get();
             SendEmailJob::dispatch($participants, $secretList);
         } catch (Exception $e) {
             Log::info($e->getMessage());

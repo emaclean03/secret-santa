@@ -926,7 +926,8 @@
                                 <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
                                     <h1 style="Margin-top: 0;Margin-bottom: 20px;font-style: normal;font-weight: normal;color: #f5f6f8;font-size: 30px;line-height: 38px;text-align: center;">
                                         You&#8217;re invited to {{$secretList->list_name}}<br/></h1>
-                                    <small style="Margin-top: 0;font-style: normal;font-weight: normal;color: #f5f6f8;line-height: 38px;text-align: center;">A Mystery drawing list sent from {{$secretList->name}}</small>
+                                    <small style="Margin-top: 0;font-style: normal;font-weight: normal;color: #f5f6f8;line-height: 38px;text-align: center;">A
+                                        Mystery drawing list sent from {{$secretList->name}}</small>
                                 </div>
                             </div>
                         </div>
@@ -943,7 +944,8 @@
                             <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;">
                                 <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
                                     <h3 style="Margin-top: 0;Margin-bottom: 12px;font-style: normal;font-weight: normal;color: #3d3b3d;font-size: 17px;line-height: 26px;">
-                                        Your group admin has drawn names for this event. Below you will find the details pertaining to you.
+                                        Your group admin has drawn names for this event. Below you will find the details
+                                        pertaining to you.
                                     </h3>
                                 </div>
                             </div>
@@ -1012,11 +1014,9 @@
                                     </h3>
                                 </div>
                             </div>
-
                         </div>
                         <div class="column wide"
                              style="text-align: left;color: #525252;font-size: 16px;line-height: 24px;font-family: Montserrat,DejaVu Sans,Verdana,sans-serif;Float: left;max-width: 400px;min-width: 320px; width: 320px;width: calc(8000% - 47600px);">
-
                             <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;Margin-bottom: 24px;">
                                 <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
                                     <p style='Margin-top: 0;Margin-bottom: 0;font-family: Montserrat,"DejaVu Sans",Verdana,sans-serif;'>
@@ -1024,7 +1024,6 @@
                                               style="text-decoration: inherit;">${{$secretList->list_budget}}</span></p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -1076,7 +1075,8 @@
                                 <div class="btn btn--flat btn--large" style="text-align:left;">
                                     <![if !mso]><a
                                             style="border-radius: 4px;display: inline-block;font-size: 14px;font-weight: bold;line-height: 24px;padding: 12px 24px;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #ffffff !important;background-color: #1063fe;font-family: Montserrat, DejaVu Sans, Verdana, sans-serif;"
-                                            href={{URL::signedRoute('public.index', $secretList->id)}}>View this event</a><![endif]>
+                                            href={{URL::signedRoute('public.index', $secretList->id)}}>View this
+                                        event</a><![endif]>
                                     <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href={{URL::signedRoute('public.index', $secretList->id)}}" style="width:127.5pt" arcsize="9%" fillcolor="#1063FE" stroke="f"><v:textbox style="mso-fit-shape-to-text:t" inset="0pt,8.25pt,0pt,8.25pt"><center style="font-size:14px;line-height:24px;color:#FFFFFF;font-family:Montserrat,DejaVu Sans,Verdana,sans-serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:1.5px">View this event</center></v:textbox></v:roundrect><![endif]-->
                                 </div>
                             </div>
@@ -1084,8 +1084,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="email-footer__additional-info" style="font-size: 12px;line-height: 19px;margin-bottom: 15px;">
-                    <a style="text-align: center" href="{{URL::signedRoute('public.unsubscribe', ['participant' => $details->id])}}">Unsubscribe and leave this Mystery Drawing</a>
+                <div class="email-footer__additional-info"
+                     style="font-size: 12px;line-height: 19px;margin-bottom: 15px;">
+                    <a style="text-align: center"
+                       href="{{URL::signedRoute('public.unsubscribe', ['participant' => $details->id])}}">Unsubscribe
+                        and leave this Mystery Drawing</a>
                 </div>
 
                 <div style="mso-line-height-rule: exactly;line-height: 20px;font-size: 20px;">&nbsp;</div>

@@ -3,30 +3,47 @@
   <div class="flex w-full h-screen text-center bg-gradient-to-r from-indigo-200 to-transparent">
     <div class="lg:w-3/4 w-full mx-auto mt-1">
       <ListInformation :list="list"/>
-      <q-card class="h-max m-2 w-full mt-4 lg:w-3/4 mx-auto">
+      <div class="flex flex-row">
+        <div class="w-1/2">
+          <q-card class="h-max m-2 w-full mt-4 lg:w-3/4 mx-auto">
+            <font-awesome-icon icon="fa-solid fa-info-circle"/>
+            <div class="text-center inline ml-1 font-bold">
+              Please choose your name in the dropdown. You can then update your email
+            </div>
 
-        <font-awesome-icon icon="fa-solid fa-info-circle"/>
-        <div class="text-center inline ml-1 font-bold">
-          Please choose your name in the dropdown. You can then update your email
+            <q-separator/>
+            <q-card-section class="lg:w-1/2 mx-auto bg-">
+              <q-select
+                  option-label="full_name"
+                  option-value="id"
+                  filled
+                  v-model="selectedParticipant"
+                  :options="participants"
+                  label="Your name"/>
+            </q-card-section>
+            <q-separator class="bg-black"/>
+            <q-card-section>
+              <UpdateParticipantInfo v-if="selectedParticipant" :participant="selectedParticipant"/>
+              <div v-if="errors.email">{{ errors.email }}</div>
+              <div v-if="errors.fullName">{{ errors.email }}</div>
+            </q-card-section>
+          </q-card>
         </div>
+        <div v-if="selectedParticipant" class="w-1/2">
+          <q-card class="h-max m-2 w-full mt-4 lg:w-3/4 mx-auto">
+            <font-awesome-icon icon="fa-solid fa-info-circle"/>
+            <div class="text-center inline ml-1 font-bold">
+              Your wishlist
+            </div>
 
-        <q-separator/>
-        <q-card-section class="lg:w-1/2 mx-auto bg-">
-          <q-select
-              option-label="full_name"
-              option-value="id"
-              filled
-              v-model="selectedParticipant"
-              :options="participants"
-              label="Your name"/>
-        </q-card-section>
-        <q-separator class="bg-black"/>
-        <q-card-section>
-          <UpdateParticipantInfo v-if="selectedParticipant" :participant="selectedParticipant"/>
-          <div v-if="errors.email">{{ errors.email }}</div>
-          <div v-if="errors.fullName">{{ errors.email }}</div>
-        </q-card-section>
-      </q-card>
+            <q-separator/>
+            <q-separator class="bg-black"/>
+            <q-card-section>
+              <DisplayWishList v-if="selectedParticipant" :participant="selectedParticipant"/>
+            </q-card-section>
+          </q-card>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -37,6 +54,7 @@ import {ref} from "vue";
 import UpdateParticipantInfo from "@/Components/Shared/UpdateParticipantInfo.vue";
 import Banner from '@/Components/Banner.vue';
 import ListInformation from "@/Components/Shared/ListInformation.vue";
+import DisplayWishList from "@/Components/Shared/DisplayWishList.vue";
 
 interface Props {
   list: {
@@ -49,10 +67,11 @@ interface Props {
     id: number,
     full_name: string,
     email: string,
+    wish_list_items: [{
+      id: number,
+    }]
   }],
-  errors: {
-
-  }
+  errors: {}
 }
 
 const props = defineProps<Props>();
