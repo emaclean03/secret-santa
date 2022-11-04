@@ -63,6 +63,12 @@ interface Props {
     drawn_name: string,
     parent: [{
       full_name: string
+    }],
+    wish_list:[{
+      Name: string,
+      Description: string,
+      item_url: string,
+      priority: string,
     }]
   }],
   list: {

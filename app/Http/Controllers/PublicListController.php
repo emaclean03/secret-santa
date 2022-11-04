@@ -17,7 +17,7 @@ class PublicListController extends Controller
 
         return Inertia::render('PublicSecretList/index', [
             'list'=> $secretList,
-            'participants'=>$secretList->participant()->get(),
+            'participants'=>$secretList->participant()->with(['wishListItems'])->get(),
         ]);
     }
 
