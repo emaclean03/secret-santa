@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\Participant;
 use App\Models\SecretList;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,8 +20,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $user = User::factory()->create(['email' => 'emaclean03@aol.com']);
-        $list = SecretList::factory($user->id)->create();
+        $list = SecretList::factory()->create(['has_been_drawn'=>false,
+            'list_budget'=> 50,
+            'event_date'=>Carbon::now()->format('Y-m-d')
+        ]);
         User::findOrFail($user->id)->SecretList()->attach($list);
-        Participant::factory(5)->create(['list_id'=>$list->id]);
+        Participant::factory(5)->create(['secret_list_id'=>$list->id]);
     }
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('secret_list_id')->constrained()->onDelete('cascade');
             $table->foreignId('participant_id')->nullable()->constrained()->onDelete('cascade');
+            $table->integer('excluded_participant')->nullable();
             $table->string('full_name');
             $table->string('email')->nullable();
             $table->timestamps();
