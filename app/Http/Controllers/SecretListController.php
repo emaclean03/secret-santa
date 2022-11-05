@@ -144,9 +144,11 @@ class SecretListController extends Controller
                 return Redirect::back()->dangerBanner('Please ensure an email is set for ' . $person->full_name);
             }
             $randomPerson = $participants->random();
-            while ($randomPerson->id === $person->id || in_array($randomPerson->id, $usedPeople)) {
+
+            while ($randomPerson->id === $person->id || in_array($randomPerson->id, $usedPeople) || $randomPerson->id === $person->excluded_participant) {
                 $randomPerson = $participants->random();
             }
+
             $person->participant_id = $randomPerson->id;
             $person->save();
             $usedPeople[] = $randomPerson->id;
@@ -159,7 +161,11 @@ class SecretListController extends Controller
         } catch (Exception $e) {
             Log::info($e->getMessage());
         }
-        return Redirect::back()->banner('Successfully drawn names. Emails have been dispatched.');
+        return Redirect::back()->banner('Successfully drawn names. Emails have been sent out!');
+    }
+
+    public function exclusions() {
+
     }
 }
 

@@ -9,15 +9,15 @@
           <q-btn
               color="blue-grey-9"
               class="text-center"
-              :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
-              @click="expanded = !expanded"
-              :label="!expanded ? 'Create a new mystery list' : 'Close'"
+              :icon="expandedNewList ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+              @click="expandedNewList = !expandedNewList"
+              :label="!expandedNewList ? 'Create a new mystery list' : 'Close'"
           />
           <q-slide-transition>
-            <div v-show="expanded">
+            <div v-show="expandedNewList">
               <q-separator />
               <q-card-section class="text-subtitle2">
-                <NewList @created="expanded = !expanded" :user="user"/>
+                <NewList @created="expandedNewList = !expandedNewList" :user="user"/>
               </q-card-section>
             </div>
           </q-slide-transition>
@@ -47,7 +47,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const expanded = ref(false);
+const expandedNewList = ref(false);
 
 
 </script>

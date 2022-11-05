@@ -42,17 +42,6 @@
                   </q-icon>
                 </template>
               </q-input>
-
-<!--              <q-input
-                  filled
-                  v-model="secretListEventDate"
-                  label="Event date"
-                  lazy-rules
-                  clearable
-                  min="2022-11-01"
-                  type="date"
-                  :rules="[ val => val && val.length > 0 || 'Please type something']"
-              />-->
               <q-separator class="bg-black "/>
               <q-input
                   v-for="(participant, index) in participantNames"
