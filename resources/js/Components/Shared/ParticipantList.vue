@@ -28,7 +28,7 @@
       <template v-slot:body="props">
         <q-tr :props="props">
           <q-td key="full_name" :props="props">
-            {{ props.row.full_name }}
+            {{props.row.exclude ? props.row.full_name + ' excludes ' + props.row.exclude.full_name : props.row.full_name}}
             <q-popup-edit @save="(val) => handleSaveFullName(val, props.row.id)" title="Update name"
                           v-model="props.row.full_name" buttons v-slot="scope">
               <q-input v-model="scope.value" dense autofocus/>
@@ -45,11 +45,13 @@
             <q-btn v-if="participants.length > 3" @click="handleDeleteParticipant(props.row)" color="blue-grey-9" size="xs">
               <font-awesome-icon icon="fa-solid fa-x  "/>
             </q-btn>
+
           </q-td>
         </q-tr>
       </template>
       <template v-if="!list.has_been_drawn" #top-left>
             <q-btn class="mb-3 lg:mb-0" @click="handleAddParticipant" color="blue-grey-9">Add participant</q-btn>
+
       </template>
     </q-table>
   </q-card>
@@ -64,6 +66,9 @@ interface Props {
   participants: [{
     email: string,
     full_name: string,
+    exclude:[{
+      full_name:string,
+    }]
   }],
   list: {
     id: number,

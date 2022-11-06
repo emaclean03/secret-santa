@@ -16,6 +16,10 @@ class Participant extends Model
         return $this->belongsTo(self::class , 'participant_id');
     }
 
+    public function exclude(){
+        return $this->belongsTo(self::class , 'excluded_participant');
+    }
+
     public function children(){
         return $this->hasMany(self::class , 'id');
     }
