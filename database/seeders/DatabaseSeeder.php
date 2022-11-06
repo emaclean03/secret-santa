@@ -19,12 +19,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::factory()->create(['email' => 'emaclean03@aol.com']);
+        //$user = User::factory()->create(['email' => 'emaclean03@aol.com']);
         $list = SecretList::factory()->create(['has_been_drawn'=>false,
             'list_budget'=> 50,
             'event_date'=>Carbon::now()->format('Y-m-d')
         ]);
-        User::findOrFail($user->id)->SecretList()->attach($list);
-        Participant::factory(5)->create(['secret_list_id'=>$list->id]);
+        User::findOrFail(1)->SecretList()->attach($list);
+        Participant::factory(7)->create([
+            'secret_list_id'=>$list->id
+            ]
+        );
     }
 }
