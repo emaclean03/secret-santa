@@ -57,6 +57,7 @@ Route::middleware([
     //Update a participant
     Route::post('/participants/{participant}/updateFullName', [ParticipantsController::class, 'updateFullName'])->name('Participant.updateFullName');
     Route::post('/participants/{participant}/updateEmail', [ParticipantsController::class, 'updateEmail'])->name('Participant.updateEmail');
+    Route::post('/participants/{participant}/updateExcludeParticipant', [ParticipantsController::class, 'updateExcludeParticipant'])->name('Participant.updateExcludeParticipant');
 });
 
 
