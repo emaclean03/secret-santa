@@ -126,18 +126,6 @@ class ParticipantsController extends Controller
     }
 
     public function updateExcludeParticipant(UpdateExcludeParticipantRequest $request, Participant $participant){
-        //Remove anyone that has a participant already
-        Participant::where('excluded_participant', $request->excluded_participant)->orWhere('excluded_participant', $participant->id)
-            ->update([
-                'excluded_participant'=>null,
-            ]);
-
-        //Get the person excluded
-        $excluded = Participant::findOrFail($request->excluded_participant);
-        //Set the excluded participant to the participant selected
-        $excluded->update([
-            'excluded_participant'=>$participant->id
-        ]);
         //set the participant to the excluded participant
         $participant->update([
             'excluded_participant'=>$request->excluded_participant

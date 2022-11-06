@@ -10,6 +10,7 @@ use App\Models\SecretList;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
@@ -51,7 +52,7 @@ class SecretListController extends Controller
             'email' => Auth::user()->email,
             'user_id' => Auth::user()->id,
             'list_budget' => $request->listBudget,
-            'event_date' =>  Carbon::parse($request->eventDate)->format('Y-m-d')
+            'event_date' => Carbon::parse($request->eventDate)->format('Y-m-d')
         ]);
 
 
@@ -135,8 +136,8 @@ class SecretListController extends Controller
     public function drawParticipants(SecretList $secretList)
     {
         $participants = $secretList->participant()->get();
-        $usedPeople = [];
 
+        $usedPeople = [];
         foreach ($participants as $person) {
             //This person has no email, we need emails!
             if ($person->email === null || $person->email === '') {
@@ -152,9 +153,10 @@ class SecretListController extends Controller
             $person->save();
             $usedPeople[] = $randomPerson->id;
         }
-        $secretList->update(['has_been_drawn' => true]);
 
         try {
+            //Let's check to make sure everyone in the list has a participant
+             $secretList->update(['has_been_drawn' => true]);
             $participants = $secretList->participant()->with('parent')->get();
             SendEmailJob::dispatch($participants, $secretList);
         } catch (Exception $e) {
@@ -163,7 +165,8 @@ class SecretListController extends Controller
         return Redirect::back()->banner('Successfully drawn names. Emails have been sent out!');
     }
 
-    public function exclusions() {
+    public function exclusions()
+    {
 
     }
 }
