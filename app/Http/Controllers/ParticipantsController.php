@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreParticipantsRequest;
+use App\Http\Requests\UpdateExcludeParticipantRequest;
 use App\Http\Requests\UpdateParticipantsEmailRequest;
 use App\Http\Requests\UpdateParticipantsFullNameRequest;
 use App\Http\Requests\UpdateParticipantsPublicRequest;
@@ -122,6 +123,27 @@ class ParticipantsController extends Controller
             'full_name'=>$request->fullName
         ]);
         return Redirect::back()->banner('Successfully updated participant');
+    }
+
+    public function updateExcludeParticipant(UpdateExcludeParticipantRequest $request, Participant $participant){
+        //Remove anyone that has a participant already
+        Participant::where('excluded_participant', $request->excluded_participant)->orWhere('excluded_participant', $participant->id)
+            ->update([
+                'excluded_participant'=>null,
+            ]);
+
+        //Get the person excluded
+        $excluded = Participant::findOrFail($request->excluded_participant);
+        //Set the excluded participant to the participant selected
+        $excluded->update([
+            'excluded_participant'=>$participant->id
+        ]);
+        //set the participant to the excluded participant
+        $participant->update([
+            'excluded_participant'=>$request->excluded_participant
+        ]);
+
+        return Redirect::back()->banner('Successfully updated excluded participant!');
     }
 
     /**

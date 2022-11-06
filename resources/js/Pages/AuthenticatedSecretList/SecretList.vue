@@ -11,6 +11,37 @@
               <p v-else class="block text-green-700 mb-2 border-b border-gray-200 font-bold">Not all participants have
                 added their email!</p>
             </div>
+
+            <q-dialog class="w-full" v-model="showDialog">
+              <q-card style="width: 700px; max-width: 80vw;">
+                <q-card-section>
+                  <div class="text-h6">Setting exclusions</div>
+                </q-card-section>
+                <q-card-section class="q-pt-none">
+                  <q-select
+                      option-label="full_name"
+                      option-value="id"
+                      filled
+                      v-model="selectedParticipant"
+                      :options="participants"
+                      label="Select a participant"/>
+
+                  <q-select
+                      class="mt-4"
+                      v-if="selectedParticipant"
+                      option-label="full_name"
+                      option-value="id"
+                      filled
+                      v-model="excludeParticipant"
+                      :options="participants.filter((item)=>item.id !== selectedParticipant.id)"
+                      label="Cannot draw (Participant to exclude)"/>
+                </q-card-section>
+                <q-card-actions align="right">
+                  <q-btn flat @click="handleExcludeParticipants" label="OK" color="primary" v-close-popup/>
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
+
             <ListInformation :list="list"/>
             <div class="flex flex-row justify-center">
               <div class="m-2" v-if="!list.has_been_drawn">
@@ -18,6 +49,14 @@
               </div>
               <div class="m-2" v-else>
                 <q-btn color="primary" @click="handleShowDrawnNames">{{ showDrawnNameButton }}</q-btn>
+              </div>
+              <div :class="{disabled:participants.length <= 3}" class="m-2">
+                <q-btn class="mb-3 lg:mb-0" @click="() => showDialog = !showDialog" color="blue-grey-9">
+                  <q-tooltip v-if="participants.length <= 3">
+                    You must have 4+ participants to use exclusions
+                  </q-tooltip>
+                  Set Exclusions
+                </q-btn>
               </div>
               <div class="m-2">
                 <q-btn color="red-5" @click="deleteList(list.id)">Delete this list</q-btn>
@@ -63,6 +102,9 @@ interface Props {
     drawn_name: string,
     parent: [{
       full_name: string
+    }],
+    exclude: [{
+      full_name:string
     }]
   }],
   list: {
@@ -83,7 +125,9 @@ const props = defineProps<Props>()
 const showDrawnNames = ref(false);
 const showDrawnNameButton = ref('Show drawn names');
 const copiedToClipboard = ref(false);
-
+const showDialog = ref(false);
+const selectedParticipant = ref(null);
+const excludeParticipant = ref(null);
 
 const copyToClipBoard = () => {
   navigator.clipboard.writeText(props.signedUrl);
@@ -120,6 +164,17 @@ const deleteList = (listId) => {
   Inertia.post(`/secretList/${listId}/delete`, {}, {
     onBefore: () => confirm('Are you sure you want to delete this list?'),
   })
+}
+
+const handleExcludeParticipants = () => {
+  Inertia.post(`/participants/${selectedParticipant.value.id}/updateExcludeParticipant`,
+      {excluded_participant: excludeParticipant.value.id},
+      {
+        onSuccess: () => {
+          selectedParticipant.value = null;
+          excludeParticipant.value = null;
+        }
+      })
 }
 
 

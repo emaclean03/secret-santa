@@ -7,6 +7,7 @@
     <q-table
         :rows="participants"
         :columns="columns"
+        :rows-per-page-options="[0]"
         row-key="full_name"
     >
       <template v-slot:body="props">
