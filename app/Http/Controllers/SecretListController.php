@@ -138,7 +138,6 @@ class SecretListController extends Controller
         $participants = $secretList->participant()->get();
 
         $usedPeople = [];
-        $tries = 0;
         foreach ($participants as $person) {
             //This person has no email, we need emails!
             if ($person->email === null || $person->email === '') {
@@ -146,18 +145,13 @@ class SecretListController extends Controller
             }
             $randomPerson = $participants->random();
 
-            while ($randomPerson->id === $person->id || in_array($randomPerson->id, $usedPeople) || $randomPerson->id === $person->excluded_participant || $tries !== 100) {
-                $tries++;
-                $randomPerson = $participants->random();
-            }
+            while ($randomPerson->id === $person->id || in_array($randomPerson->id, $usedPeople) || $randomPerson->id === $person->excluded_participant) {
 
-            if($tries === 100){
-                return Redirect::back()->dangerBanner('There was an error drawing this list. Please try again.');
+                $randomPerson = $participants->random();
             }
 
             $person->participant_id = $randomPerson->id;
             $person->save();
-            $tries = 0;
             $usedPeople[] = $randomPerson->id;
         }
 
