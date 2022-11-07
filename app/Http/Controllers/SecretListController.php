@@ -138,6 +138,7 @@ class SecretListController extends Controller
         $participants = $secretList->participant()->get();
 
         $usedPeople = [];
+        $tries = 0;
         foreach ($participants as $person) {
             //This person has no email, we need emails!
             if ($person->email === null || $person->email === '') {
@@ -145,20 +146,26 @@ class SecretListController extends Controller
             }
             $randomPerson = $participants->random();
 
-            while ($randomPerson->id === $person->id || in_array($randomPerson->id, $usedPeople) || $randomPerson->id === $person->excluded_participant) {
+            while ($randomPerson->id === $person->id || in_array($randomPerson->id, $usedPeople) || $randomPerson->id === $person->excluded_participant || $tries !== 100) {
+                $tries++;
                 $randomPerson = $participants->random();
+            }
+
+            if($tries === 100){
+                return Redirect::back()->dangerBanner('There was an error drawing this list. Please try again.');
             }
 
             $person->participant_id = $randomPerson->id;
             $person->save();
+            $tries = 0;
             $usedPeople[] = $randomPerson->id;
         }
 
         try {
             //Let's check to make sure everyone in the list has a participant
-             $secretList->update(['has_been_drawn' => true]);
+          //   $secretList->update(['has_been_drawn' => true]);
             $participants = $secretList->participant()->with('parent')->get();
-            SendEmailJob::dispatch($participants, $secretList);
+          //  SendEmailJob::dispatch($participants, $secretList);
         } catch (Exception $e) {
             Log::info($e->getMessage());
         }

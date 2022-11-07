@@ -2,7 +2,6 @@
 import {Head, Link} from '@inertiajs/inertia-vue3';
 import xmasGift from '../../images/ChistmasGift.avif'
 import turkey from '../../images/turkey.avif';
-import exclusionExample from '../../images/exclusion-image-welcome.avif';
 import {useHead} from "@vueuse/head";
 
 interface Props {
@@ -16,7 +15,7 @@ useHead({
   title: 'Mystery Drawing',
   meta: [
     {
-      name: 'Mystery Drawing', content: () => 'Create mystery drawing lists for your friends!'
+      name: 'Mystery Drawing', content: () => 'Create mystery drawing lists with your friends! Great for Christmas secret santa'
     }
   ]
 })
@@ -60,10 +59,10 @@ useHead({
         <div class="w-full md:w-1/2 justify-center items-start text-center md:text-left">
           <p class="uppercase text-2xl tracking-loose w-full font-bold">Mystery Drawing</p>
           <h1 class="my-4 text-5xl font-bold leading-tight text-blue-700">
-            A free, simple way to create secret lists with your friends!
+            A free, simple way to create secret lists to draw names with your friends!
           </h1>
           <p class="leading-normal text-2xl mb-8 text-blue-600">
-            Mystery Drawing® is a free secret list creator for Christmas and any other festivities!</p>
+            Mystery Drawing® is a free secret list creator to draw names for Christmas and any other festivities!</p>
         </div>
 
         <div class="w-full md:w-1/2 justify-center text-center md:text-right">
@@ -113,7 +112,6 @@ useHead({
       </div>
       <div class="flex flex-wrap">
         <div class="w-5/6 sm:w-1/2 p-6">
-
           <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
             <font-awesome-icon icon="fa-solid fa-1"/>
             <div class="inline ml-2">. Create your free account.</div>
@@ -189,18 +187,12 @@ useHead({
             </li>
           </ul>
         </div>
-        <!--          <div class="flex-1">
-                    <p class="uppercase text-gray-500 md:mb-6">Legal</p>
-                    <ul class="list-reset mb-6">
-                      <li class="mt-2 mr-2 md:block md:mr-0">
-                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Terms</a>
-                      </li>
-                      <li class="mt-2 mr-2 md:block md:mr-0">
-                        <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">Privacy</a>
-                      </li>
-                    </ul>
-                  </div>
                   <div class="flex-1">
+                    <p class="uppercase text-gray-500 md:mb-6">Christmas Secret Santa List</p>
+                    <p class="uppercase text-gray-500 md:mb-6">Hanukkah</p>
+                    <p class="uppercase text-gray-500 md:mb-6">Halloween</p>
+                  </div>
+<!--                  <div class="flex-1">
                     <p class="uppercase text-gray-500 md:mb-6">Social</p>
                     <ul class="list-reset mb-6">
                       <li class="mt-2 mr-2 md:block md:mr-0">
