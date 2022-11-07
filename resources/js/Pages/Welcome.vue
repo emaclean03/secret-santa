@@ -62,7 +62,7 @@ useHead({
             A free, simple way to create secret lists to draw names with your friends!
           </h1>
           <p class="leading-normal text-2xl mb-8 text-blue-600">
-            Mystery Drawing® is a free secret list creator to draw names for Christmas and any other festivities!</p>
+            Mystery Drawing® is a free secret list creator to draw random names for Christmas and any other festivities!</p>
         </div>
 
         <div class="w-full md:w-1/2 justify-center text-center md:text-right">
@@ -70,7 +70,7 @@ useHead({
             <ol class="text-2xl font-bold leading-tight text-blue-700">
               <ul><font-awesome-icon icon="fa-solid fa-check"/>Free Unlimited participants</ul>
               <ul><font-awesome-icon icon="fa-solid fa-check"/>Save your lists for future use</ul>
-              <ul><font-awesome-icon icon="fa-solid fa-check"/>Exclude participants from each other</ul>
+              <ul><font-awesome-icon icon="fa-solid fa-check"/>Secret Santa draw with exclusions</ul>
               <ul><font-awesome-icon icon="fa-solid fa-check"/>Email sent to each participant with their drawn name</ul>
             </ol>
 
