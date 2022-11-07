@@ -157,9 +157,9 @@ class SecretListController extends Controller
 
         try {
             //Let's check to make sure everyone in the list has a participant
-          //   $secretList->update(['has_been_drawn' => true]);
+             $secretList->update(['has_been_drawn' => true]);
             $participants = $secretList->participant()->with('parent')->get();
-          //  SendEmailJob::dispatch($participants, $secretList);
+            SendEmailJob::dispatch($participants, $secretList);
         } catch (Exception $e) {
             Log::info($e->getMessage());
         }
