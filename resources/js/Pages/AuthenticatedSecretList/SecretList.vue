@@ -36,8 +36,15 @@
                       :options="participants.filter((item)=>item.id !== selectedParticipant.id)"
                       label="Cannot draw (Participant to exclude)"/>
                 </q-card-section>
+                <q-card-section>
+                  <h5 class="text-center underline">Current exclusions:</h5>
+                  <div class="list-disc m-1" v-for="item in participants">
+                    {{ item.exclude && '* ' + item.full_name + ' excludes ' + item.exclude.full_name }}
+                  </div>
+                </q-card-section>
                 <q-card-actions align="right">
                   <q-btn flat @click="handleExcludeParticipants" label="OK" color="primary" v-close-popup/>
+                  <q-btn flat @click="() => showDialog = !showDialog" label="Close" color="primary" v-close-popup/>
                 </q-card-actions>
               </q-card>
             </q-dialog>
@@ -48,7 +55,7 @@
                 <q-btn color="blue-grey-9" @click="handleStartDraw(list.id)">Start the draw</q-btn>
               </div>
               <div class="m-2" v-else>
-                <q-btn color="primary" @click="handleShowDrawnNames">{{ showDrawnNameButton }}</q-btn>
+                <!--                <q-btn color="primary" @click="handleShowDrawnNames">{{ showDrawnNameButton }}</q-btn>-->
               </div>
               <div :class="{disabled:participants.length <= 3}" class="m-2">
                 <q-btn class="mb-3 lg:mb-0" @click="() => showDialog = !showDialog" color="blue-grey-9">
@@ -103,9 +110,9 @@ interface Props {
     parent: [{
       full_name: string
     }],
-    exclude: [{
-      full_name:string
-    }]
+    exclude: {
+      full_name: string
+    }
   }],
   list: {
     id: number,
@@ -173,6 +180,7 @@ const handleExcludeParticipants = () => {
         onSuccess: () => {
           selectedParticipant.value = null;
           excludeParticipant.value = null;
+          showDialog.value = true;
         }
       })
 }
