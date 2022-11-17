@@ -67,13 +67,12 @@ useHead({
 
         <div class="w-full md:w-1/2 justify-center text-center md:text-right">
           <p class="uppercase text-2xl tracking-loose w-full font-bold">Features:</p>
-            <ol class="text-2xl font-bold leading-tight text-blue-700">
+            <ol class="text-2xl font-bold leading-tight text-blue-700 mb-8">
               <ul><font-awesome-icon icon="fa-solid fa-check"/>Free Unlimited participants</ul>
               <ul><font-awesome-icon icon="fa-solid fa-check"/>Save your lists for future use</ul>
               <ul><font-awesome-icon icon="fa-solid fa-check"/>Secret Santa draw with exclusions</ul>
               <ul><font-awesome-icon icon="fa-solid fa-check"/>Email sent to each participant with their drawn name</ul>
             </ol>
-
         </div>
       <!--Right Col-->
     </div>
