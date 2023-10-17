@@ -1,5 +1,5 @@
 <script setup lang="ts" xmlns:Cache-Control="http://www.w3.org/1999/xhtml">
-import {Head, Link} from '@inertiajs/inertia-vue3';
+import {Head, Link} from '@inertiajs/vue3';
 import xmasGift from '../../images/ChistmasGift.avif'
 import turkey from '../../images/turkey.avif';
 import {useHead} from "@vueuse/head";

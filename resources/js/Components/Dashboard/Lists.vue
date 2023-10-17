@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Inertia} from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 
 interface Props {
   lists: [{
@@ -50,11 +50,11 @@ const handleDeleteList = (listId: number) => {
   if (!confirm('Are you sure you wish to delete this list?')) {
     return false;
   }
-  Inertia.post(`/secretList/${listId}/delete`);
+  router.post(`/secretList/${listId}/delete`);
 }
 
 const handleViewList = (listId: number) => {
-  Inertia.visit(`/secretList/${listId}/show`, {},);
+  router.visit(`/secretList/${listId}/show`, {},);
 }
 </script>
 

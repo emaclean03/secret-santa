@@ -188,7 +188,7 @@ const handleExcludeParticipants = () => {
 
 import AppLayout from "@/Layouts/AppLayout.vue";
 import ListInformation from "@/Components/Shared/ListInformation.vue";
-import {Inertia} from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 import DrawnNames from "@/Components/Dashboard/DrawnNames.vue";
 import {ref} from "vue";
 </script>

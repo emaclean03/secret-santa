@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Inertia} from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 
 interface Props{
   participant:{
