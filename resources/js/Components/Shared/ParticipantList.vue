@@ -51,7 +51,6 @@
       </template>
       <template v-if="!list.has_been_drawn" #top-left>
             <q-btn class="mb-3 lg:mb-0" @click="handleAddParticipant" color="blue-grey-9">Add participant</q-btn>
-
       </template>
     </q-table>
   </q-card>
@@ -59,7 +58,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Inertia} from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 import {ref} from "vue";
 
 interface Props {
@@ -75,6 +74,7 @@ interface Props {
     email: string,
     list_name: string,
     name: string,
+    has_been_drawn: boolean,
   }
 }
 

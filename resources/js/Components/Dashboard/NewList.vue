@@ -78,7 +78,7 @@
 
 <script lang="ts" setup>
 import {ref} from "vue";
-import {Inertia} from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 
 interface Props{
   user: [

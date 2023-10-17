@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Inertia} from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 import {ref} from "vue";
 
 interface Props {
