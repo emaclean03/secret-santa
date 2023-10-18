@@ -94,15 +94,15 @@ const columns = [
 ]
 
 const handleSaveFullName = (value, participantId) => {
-  Inertia.post(`/participants/${participantId}/updateFullName`, { fullName: value})
+  router.post(`/participants/${participantId}/updateFullName`, { fullName: value})
 }
 
 const handleSaveEmail = (value, participantId) => {
-  Inertia.post(`/participants/${participantId}/updateEmail`, { email: value})
+  router.post(`/participants/${participantId}/updateEmail`, { email: value})
 }
 
 const handleDeleteParticipant = (participant) => {
-  Inertia.post(`/secretList/${props.list.id}/update`, {participantId: participant.id}, {
+  router.post(`/secretList/${props.list.id}/update`, {participantId: participant.id}, {
     onBefore: () => confirm('Are you sure you wish to delete this participant?')
   })
 }
@@ -110,7 +110,7 @@ const handleDeleteParticipant = (participant) => {
 const handleAddParticipant = () => {
   const full_name = prompt('What is the participant name?');
   if(full_name) {
-    Inertia.post(`/participants/${props.list.id}/store`, {full_name})
+    router.post(`/participants/${props.list.id}/store`, {full_name})
   }
 }
 </script>

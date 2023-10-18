@@ -106,7 +106,7 @@ const addNewUser = () => {
 
 
 const onSubmit = (event) => {
-  Inertia.post('/secretList/store', {
+  router.post('/secretList/store', {
     participantNames: participantNames.value,
     listName: secretListName.value,
     listBudget: secretListBudget.value,
