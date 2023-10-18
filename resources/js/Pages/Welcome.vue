@@ -1,5 +1,5 @@
 <script setup lang="ts" xmlns:Cache-Control="http://www.w3.org/1999/xhtml">
-import {Head, Link} from '@inertiajs/inertia-vue3';
+import {Head, Link} from '@inertiajs/vue3';
 import xmasGift from '../../images/ChistmasGift.avif'
 import turkey from '../../images/turkey.avif';
 import {useHead} from "@vueuse/head";
@@ -23,10 +23,9 @@ useHead({
 
 <template>
   <Head title="Welcome"/>
-
-  <div class="w-full mx-auto bg-gradient-to-r from-cyan-400 to-blue-300">
+  <div class="w-full mx-auto bg-gradient-to-r from-cyan-600 to-blue-600">
     <nav class="mx-auto w-full z-30">
-      <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
+      <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-4">
         <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto mt-2 lg:mt-0 text-black p-4 lg:p-0 z-20">
           <ul class="list-reset flex justify-end flex-1 items-center">
             <li class="mr-3">
@@ -57,21 +56,17 @@ useHead({
       <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center ">
         <!--Left Col-->
         <div class="w-full md:w-1/2 justify-center items-start text-center md:text-left">
-          <p class="uppercase text-2xl tracking-loose w-full font-bold">Mystery Drawing</p>
-          <h1 class="my-4 text-5xl font-bold leading-tight text-blue-700">
+          <h1 class="my-4 text-4xl font-bold leading-tight text-white">
             A free, simple way to create secret lists to draw names with your friends!
           </h1>
-          <p class="leading-normal text-2xl mb-8 text-blue-600">
-            Mystery Drawing® is a free secret list creator to draw random names for Christmas and any other festivities!</p>
         </div>
 
         <div class="w-full md:w-1/2 justify-center text-center md:text-right">
-          <p class="uppercase text-2xl tracking-loose w-full font-bold">Features:</p>
-            <ol class="text-2xl font-bold leading-tight text-blue-700 mb-8">
-              <ul><font-awesome-icon icon="fa-solid fa-check"/>Free Unlimited participants</ul>
-              <ul><font-awesome-icon icon="fa-solid fa-check"/>Save your lists for future use</ul>
-              <ul><font-awesome-icon icon="fa-solid fa-check"/>Secret Santa draw with exclusions</ul>
-              <ul><font-awesome-icon icon="fa-solid fa-check"/>Email sent to each participant with their drawn name</ul>
+            <ol class="text-2xl font-bold leading-tight text-white mb-8">
+              <ul><font-awesome-icon icon="fa-solid fa-check"/> Free Unlimited participants</ul>
+              <ul><font-awesome-icon icon="fa-solid fa-check"/> Save your lists for future use</ul>
+              <ul><font-awesome-icon icon="fa-solid fa-check"/> Draw with participant exclusions</ul>
+              <ul><font-awesome-icon icon="fa-solid fa-check"/> Email sent to each participant with their drawn name</ul>
             </ol>
         </div>
       <!--Right Col-->
@@ -103,7 +98,7 @@ useHead({
   </div>
   <section class="bg-white border-b py-8">
     <div class="container max-w-5xl mx-auto m-8 ">
-      <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+      <h2 class="w-full my-2 text-4xl underline font-bold leading-tight text-center text-gray-800">
         How it works
       </h2>
       <div class="w-full mb-4">
@@ -125,9 +120,9 @@ useHead({
               </div>
             </div>
           </h3>
-          <p class="text-gray-800 mb-8">
+          <p class="text-gray-800 text-lg mb-8">
             This will allow you to manage all of your lists for previous and future events.
-            <small class="block mt-1 font-bold">* Only the list creator will need to register an account. </small>
+            <p class="text-sm block mt-1 font-bold">* Only the list creator will need to register an account. </p>
           </p>
         </div>
       </div>
@@ -143,8 +138,7 @@ useHead({
             </h3>
             <p class="text-gray-800 ">
               Create a new list with a list of your friends. You will have a secret link that your friends can access.
-              Your friends will not have to register to use this link.
-              The link will allow them to add their own contact info!
+              This link will allow them to add their own email, and  you can assign exclusions as well at this point.
             </p>
           </div>
         </div>
@@ -158,12 +152,9 @@ useHead({
             <div class="inline ml-2">. Start the drawing!</div>
           </h3>
           <p class="text-gray-800  mb-8">
-            After starting the drawing, each participant will be assigned another participant by random.
+            After each participant has added their email, each participant will be assigned another participant by random.
             Each participant will receive an email with who their participant is, along with the event information.
           </p>
-          <div class="sm:w-1/3 mx-auto">
-            <img class="w-8/12" :src="turkey" alt="Thanksgiving Turkey"/>
-          </div>
         </div>
       </div>
     </div>
@@ -190,6 +181,7 @@ useHead({
                     <p class="uppercase text-gray-500 md:mb-6">Christmas Secret Santa List</p>
                     <p class="uppercase text-gray-500 md:mb-6">Hanukkah</p>
                     <p class="uppercase text-gray-500 md:mb-6">Halloween</p>
+                    <p class="uppercase text-gray-500 md:mb-6">Team outings</p>
                   </div>
 <!--                  <div class="flex-1">
                     <p class="uppercase text-gray-500 md:mb-6">Social</p>

@@ -51,7 +51,6 @@
       </template>
       <template v-if="!list.has_been_drawn" #top-left>
             <q-btn class="mb-3 lg:mb-0" @click="handleAddParticipant" color="blue-grey-9">Add participant</q-btn>
-
       </template>
     </q-table>
   </q-card>
@@ -59,7 +58,7 @@
 </template>
 
 <script lang="ts" setup>
-import {Inertia} from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 import {ref} from "vue";
 
 interface Props {
@@ -75,6 +74,7 @@ interface Props {
     email: string,
     list_name: string,
     name: string,
+    has_been_drawn: boolean,
   }
 }
 
@@ -94,15 +94,15 @@ const columns = [
 ]
 
 const handleSaveFullName = (value, participantId) => {
-  Inertia.post(`/participants/${participantId}/updateFullName`, { fullName: value})
+  router.post(`/participants/${participantId}/updateFullName`, { fullName: value})
 }
 
 const handleSaveEmail = (value, participantId) => {
-  Inertia.post(`/participants/${participantId}/updateEmail`, { email: value})
+  router.post(`/participants/${participantId}/updateEmail`, { email: value})
 }
 
 const handleDeleteParticipant = (participant) => {
-  Inertia.post(`/secretList/${props.list.id}/update`, {participantId: participant.id}, {
+  router.post(`/secretList/${props.list.id}/update`, {participantId: participant.id}, {
     onBefore: () => confirm('Are you sure you wish to delete this participant?')
   })
 }
@@ -110,7 +110,7 @@ const handleDeleteParticipant = (participant) => {
 const handleAddParticipant = () => {
   const full_name = prompt('What is the participant name?');
   if(full_name) {
-    Inertia.post(`/participants/${props.list.id}/store`, {full_name})
+    router.post(`/participants/${props.list.id}/store`, {full_name})
   }
 }
 </script>

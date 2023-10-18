@@ -78,7 +78,7 @@
 
 <script lang="ts" setup>
 import {ref} from "vue";
-import {Inertia} from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 
 interface Props{
   user: [
@@ -106,7 +106,7 @@ const addNewUser = () => {
 
 
 const onSubmit = (event) => {
-  Inertia.post('/secretList/store', {
+  router.post('/secretList/store', {
     participantNames: participantNames.value,
     listName: secretListName.value,
     listBudget: secretListBudget.value,

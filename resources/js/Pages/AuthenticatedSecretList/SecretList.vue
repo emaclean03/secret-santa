@@ -16,6 +16,7 @@
               <q-card style="width: 700px; max-width: 80vw;">
                 <q-card-section>
                   <div class="text-h6">Setting exclusions</div>
+                  <p>You can choose who can't get who (Great for spouses, couples, etc)</p>
                 </q-card-section>
                 <q-card-section class="q-pt-none">
                   <q-select
@@ -71,7 +72,7 @@
             </div>
           </q-card-section>
           <q-card-section>
-            <div class="text-h6">Share this URL
+            <div class="text-h6">Share this URL with your friends!
               <q-btn dense size="md" class="inline mb-1" flat @click="copyToClipBoard((e)=>e.target.value)">
                 <font-awesome-icon icon="fa-solid fa-copy"/>
                 <q-popup-proxy>
@@ -160,7 +161,7 @@ const handleShowDrawnNames = () => {
 }
 
 const handleStartDraw = (listId) => {
-  Inertia.post(`/secretList/${listId}/draw`, {}, {
+  router.post(`/secretList/${listId}/draw`, {}, {
     onSuccess: (page) => {
       console.log(page);
     },
@@ -168,13 +169,13 @@ const handleStartDraw = (listId) => {
 }
 
 const deleteList = (listId) => {
-  Inertia.post(`/secretList/${listId}/delete`, {}, {
+  router.post(`/secretList/${listId}/delete`, {}, {
     onBefore: () => confirm('Are you sure you want to delete this list?'),
   })
 }
 
 const handleExcludeParticipants = () => {
-  Inertia.post(`/participants/${selectedParticipant.value.id}/updateExcludeParticipant`,
+  router.post(`/participants/${selectedParticipant.value.id}/updateExcludeParticipant`,
       {excluded_participant: excludeParticipant.value.id},
       {
         onSuccess: () => {
@@ -188,7 +189,7 @@ const handleExcludeParticipants = () => {
 
 import AppLayout from "@/Layouts/AppLayout.vue";
 import ListInformation from "@/Components/Shared/ListInformation.vue";
-import {Inertia} from "@inertiajs/inertia";
+import { router } from '@inertiajs/vue3'
 import DrawnNames from "@/Components/Dashboard/DrawnNames.vue";
 import {ref} from "vue";
 </script>
