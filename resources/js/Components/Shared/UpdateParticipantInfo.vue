@@ -44,7 +44,7 @@ interface Props{
 const props = defineProps<Props>()
 
 const handleSaveInfo = (value) => {
-  Inertia.post(`/participants/${props.participant.id}/updatePublic`, {fullName: props.participant.full_name, email:props.participant.email})
+  router.post(`/participants/${props.participant.id}/updatePublic`, {fullName: props.participant.full_name, email:props.participant.email})
 }
 
 </script>

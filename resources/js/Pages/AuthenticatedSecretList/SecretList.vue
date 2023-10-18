@@ -160,7 +160,7 @@ const handleShowDrawnNames = () => {
 }
 
 const handleStartDraw = (listId) => {
-  Inertia.post(`/secretList/${listId}/draw`, {}, {
+  router.post(`/secretList/${listId}/draw`, {}, {
     onSuccess: (page) => {
       console.log(page);
     },
@@ -168,13 +168,13 @@ const handleStartDraw = (listId) => {
 }
 
 const deleteList = (listId) => {
-  Inertia.post(`/secretList/${listId}/delete`, {}, {
+  router.post(`/secretList/${listId}/delete`, {}, {
     onBefore: () => confirm('Are you sure you want to delete this list?'),
   })
 }
 
 const handleExcludeParticipants = () => {
-  Inertia.post(`/participants/${selectedParticipant.value.id}/updateExcludeParticipant`,
+  router.post(`/participants/${selectedParticipant.value.id}/updateExcludeParticipant`,
       {excluded_participant: excludeParticipant.value.id},
       {
         onSuccess: () => {

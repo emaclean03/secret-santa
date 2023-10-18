@@ -74,11 +74,11 @@ const columns = [
 ]
 
 const handleSaveFullName = (value, participantId) => {
-  Inertia.post(`/participants/${participantId}/update`, {field:'full_name', value: value})
+  router.post(`/participants/${participantId}/update`, {field:'full_name', value: value})
 }
 
 const handleSaveEmail = (value, participantId) => {
-  Inertia.post(`/participants/${participantId}/update`, {field: 'email', value: value})
+  router.post(`/participants/${participantId}/update`, {field: 'email', value: value})
 }
 
 </script>
