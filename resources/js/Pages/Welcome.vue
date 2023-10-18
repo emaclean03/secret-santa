@@ -63,10 +63,10 @@ useHead({
 
         <div class="w-full md:w-1/2 justify-center text-center md:text-right">
             <ol class="text-2xl font-bold leading-tight text-white mb-8">
-              <ul><font-awesome-icon icon="fa-solid fa-check"/>Free Unlimited participants</ul>
-              <ul><font-awesome-icon icon="fa-solid fa-check"/>Save your lists for future use</ul>
-              <ul><font-awesome-icon icon="fa-solid fa-check"/>Draw with participant exclusions</ul>
-              <ul><font-awesome-icon icon="fa-solid fa-check"/>Email sent to each participant with their drawn name</ul>
+              <ul><font-awesome-icon icon="fa-solid fa-check"/> Free Unlimited participants</ul>
+              <ul><font-awesome-icon icon="fa-solid fa-check"/> Save your lists for future use</ul>
+              <ul><font-awesome-icon icon="fa-solid fa-check"/> Draw with participant exclusions</ul>
+              <ul><font-awesome-icon icon="fa-solid fa-check"/> Email sent to each participant with their drawn name</ul>
             </ol>
         </div>
       <!--Right Col-->
