@@ -16,6 +16,7 @@
               <q-card style="width: 700px; max-width: 80vw;">
                 <q-card-section>
                   <div class="text-h6">Setting exclusions</div>
+                  <p>You can choose who can't get who (Great for spouses, couples, etc)</p>
                 </q-card-section>
                 <q-card-section class="q-pt-none">
                   <q-select
@@ -71,7 +72,7 @@
             </div>
           </q-card-section>
           <q-card-section>
-            <div class="text-h6">Share this URL
+            <div class="text-h6">Share this URL with your friends!
               <q-btn dense size="md" class="inline mb-1" flat @click="copyToClipBoard((e)=>e.target.value)">
                 <font-awesome-icon icon="fa-solid fa-copy"/>
                 <q-popup-proxy>
